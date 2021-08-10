@@ -8,7 +8,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>Enchères pas cher - Accueil</title>
 </head>
-<body style="margin: 0 auto; min-height: 100vh; max-width: 90%; background-color: #fff59a">
+<body style="margin: 0 auto; min-height: 100vh; max-width: 90%;">
 	<div class="text-center">
 		<h1>Enchères</h1>		
 	</div>
