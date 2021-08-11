@@ -1,6 +1,8 @@
 package fr.eni.encheres;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.models.bll.EnchereManager;
+import fr.eni.encheres.models.bll.exceptions.BLLException;
+import fr.eni.encheres.models.bo.Enchere;
+
 /**
  * Servlet implementation class Home
  */
@@ -16,18 +22,26 @@ import javax.servlet.http.HttpServletResponse;
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private EnchereManager enchereMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Home() {
         super();
-        // TODO Auto-generated constructor stub
+        this.enchereMgr = new EnchereManager();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		try {
+			listeE = enchereMgr.getEncheres();
+			request.setAttribute("encheres", listeE);
+		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
