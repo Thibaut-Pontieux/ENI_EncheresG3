@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.models.bll.EnchereManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
+import fr.eni.encheres.models.bo.Categorie;
 import fr.eni.encheres.models.bo.Enchere;
 
 /**
@@ -35,10 +36,10 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Enchere> listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
-			listeE = enchereMgr.getEncheres();
-			request.setAttribute("encheres", listeE);
+			listeC = enchereMgr.getCategories();
+			request.setAttribute("categoriesEncheres", listeC);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
