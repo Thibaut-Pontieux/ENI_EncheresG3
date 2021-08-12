@@ -3,7 +3,7 @@
 <body>
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
 	<div class="text-center">
-		<h1>EnchÃ¨res</h1>		
+		<h1>Enchères</h1>		
 	</div>
 	
 	<c:if test="${not empty requestScope.erreurs}">
