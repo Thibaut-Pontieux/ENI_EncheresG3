@@ -1,7 +1,7 @@
 <body>
-	<%@include file="/WEB-INF/layout/navbar.jspf" %>
+	<%@ include file="/WEB-INF/layout/navbar.jspf" %>
 	<div class="text-center">
-		<h1>Enchères</h1>		
+		<h1><%= languages.getString("accueil") %></h1>		
 	</div>
 	
 <style>

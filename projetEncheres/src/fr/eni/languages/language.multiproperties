@@ -12,19 +12,19 @@
             <Name>language</Name>
             <Description></Description>
             <Width>150</Width>
-            <HandlerConfiguration>/projetEncheres/src/fr/eni/language/language.properties|false|false|false|false|UTF-8</HandlerConfiguration>
+            <HandlerConfiguration>/projetEncheres/src/fr/eni/languages/language.properties|false|false|false|false|UTF-8</HandlerConfiguration>
         </Column>
         <Column>
             <Name>fr</Name>
             <Description></Description>
             <Width>150</Width>
-            <HandlerConfiguration>/projetEncheres/src/fr/eni/language/language_fr.properties|false|false|false|false|UTF-8</HandlerConfiguration>
+            <HandlerConfiguration>/projetEncheres/src/fr/eni/languages/language_fr.properties|false|false|false|false|UTF-8</HandlerConfiguration>
         </Column>
         <Column>
             <Name>en</Name>
             <Description></Description>
             <Width>150</Width>
-            <HandlerConfiguration>/projetEncheres/src/fr/eni/language/language_en.properties|false|false|false|false|UTF-8</HandlerConfiguration>
+            <HandlerConfiguration>/projetEncheres/src/fr/eni/languages/language_en.properties|false|false|false|false|UTF-8</HandlerConfiguration>
         </Column>
     </Columns>
     <Records>
@@ -38,6 +38,14 @@
             <Value disabled="false">Accueil</Value>
             <Value disabled="false">Accueil</Value>
             <Value disabled="false">Home</Value>
+        </Property>
+        <Property>
+            <Name>ef</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">test</Value>
+            <Value disabled="false">test</Value>
+            <Value disabled="false">test</Value>
         </Property>
     </Records>
 </MultiProperties>

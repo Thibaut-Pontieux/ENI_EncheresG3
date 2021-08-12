@@ -1,7 +1,10 @@
-
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.ResourceBundle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language",Locale.ENGLISH); %>
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -21,7 +24,7 @@
 	<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
 	
 	<link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
-	<title>Enchères pas cher - Accueil</title>
+	<title><%= languages.getString("accueil") %></title>
 </head>
 
 <header>
