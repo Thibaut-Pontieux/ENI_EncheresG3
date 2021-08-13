@@ -56,7 +56,7 @@
             <MultiLine>false</MultiLine>
             <Value disabled="false">Problème lors de la récupération des enchères.</Value>
             <Value disabled="false">Problème lors de la récupération des enchères.</Value>
-            <Value disabled="false">Error while retrieving auctions</Value>
+            <Value disabled="false">Error : cannot retrieve auctions.</Value>
         </Property>
         <Property>
             <Name>srvInfo</Name>
@@ -88,7 +88,7 @@
             <MultiLine>false</MultiLine>
             <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
             <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
-            <Value disabled="false">Error : Cannot update auction</Value>
+            <Value disabled="false">Error : cannot update auction</Value>
         </Property>
         <Property>
             <Name>getUtilisateurEncheresERR</Name>
@@ -96,7 +96,23 @@
             <MultiLine>false</MultiLine>
             <Value disabled="false">Problème lors de la récupération des enchères.</Value>
             <Value disabled="false">Problème lors de la récupération des enchères.</Value>
-            <Value disabled="false">Error : Cannot retrieve user's auctions</Value>
+            <Value disabled="false">Error : cannot retrieve user's auctions</Value>
+        </Property>
+        <Property>
+            <Name>getUtilisateurERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
+            <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
+            <Value disabled="false">Error : cannot retrieve users.</Value>
+        </Property>
+        <Property>
+            <Name>ajoutUtilisateurERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de l'inscription.</Value>
+            <Value disabled="false">Problème lors de l'inscription.</Value>
+            <Value disabled="false">Error : cannot register.</Value>
         </Property>
     </Records>
 </MultiProperties>

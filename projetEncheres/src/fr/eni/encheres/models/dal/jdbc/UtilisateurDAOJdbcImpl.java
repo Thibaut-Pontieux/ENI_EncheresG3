@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import fr.eni.encheres.models.bo.Categorie;
 import fr.eni.encheres.models.bo.Utilisateur;
@@ -14,6 +15,8 @@ import fr.eni.encheres.models.dal.exception.DALException;
 
 public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO {
 
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	
 	@Override
@@ -45,8 +48,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 				utilisateur.setAdmin(rs.getBoolean("administrateur"));
 			}
 		} catch (SQLException e) {
-			throw new DALException("Problème lors de la récupération des catégories d'enchères. "
-					+ "Contactez votre service informatique [" + e.getMessage() + "]");
+			throw new DALException(languages.getString("getUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return utilisateur;
 	}
@@ -65,11 +67,10 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 			try {
 				
 			} catch (SQLException e) {
-				throw new DALException("ProblÃ¨me lors de l'ajout de l'utilisateur. "
-						+ "Contactez votre service informatique [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("getUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
-			throw new DALException("Aucune données saisie");
+			throw new DALException(languages.getString("noData"));
 		}*/
 	}
 
