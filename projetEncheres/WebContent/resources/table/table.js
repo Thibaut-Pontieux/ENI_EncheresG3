@@ -9,11 +9,7 @@ function getIdSelections() {
 }
 
 function getEncheres(encheres){
-	$.each(encheres.rows, function(i,row){
-		row.state = $.inArray(row.id)
-		console.log(row);
-	})
-
+	encheres.forEach(element => console.log(element))
 }
 
 function responseHandler(res) {

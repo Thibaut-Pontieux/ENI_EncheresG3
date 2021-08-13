@@ -1,11 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <body>
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
+	<script type="text/javascript" src="resources/table/table.js"></script>
+	<script type="text/javascript">
+	var enchere = [];
+	<c:forEach items="${requestScope.ListeEncheres }" var="enchere">
+		enchere.push({id: ${enchere.idArticle}, price: ${enchere.montant} })
+	</c:forEach>
+	getEncheres(enchere);
+	</script>
+	
+
 	<div class="text-center">
 		<h1>Enchères</h1>		
 	</div>
-	
 	<c:if test="${not empty requestScope.erreurs}">
 		<div>
 			<ul class="list-group">
@@ -15,7 +25,6 @@
 			</ul>
 		</div>
 	</c:if>
-	<a type="idden" id="locale" value="en-US" selected></a>
 	<div class="container">	
 		<div class="w-50 mx-auto">
   			<select class="form-select form-select-padding-x-lg" id="locale">
@@ -50,7 +59,7 @@
   		data-response-handler="responseHandler">
 	</table>
 	
-	<script type="text/javascript" src="resources/table/table.js"></script>
+
 	
 	
 </body>
