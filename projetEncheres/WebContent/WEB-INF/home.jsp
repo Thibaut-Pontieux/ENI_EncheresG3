@@ -15,6 +15,7 @@
 			</ul>
 		</div>
 	</c:if>
+	<a type="idden" id="locale" value="en-US" selected></a>
 	<div class="container">	
 		<div class="w-50 mx-auto">
   			<select class="form-select form-select-padding-x-lg" id="locale">
@@ -26,5 +27,31 @@
   			</select>
 		</div>
 	</div>
+	<table
+  		id="table"
+  		data-toolbar="#toolbar"
+  		data-search="true"
+  		data-show-refresh="true"
+  		data-show-toggle="true"
+  		data-show-columns="true"
+  		data-show-columns-toggle-all="true"
+  		data-detail-view="true"
+ 		data-show-export="true"
+ 	 	data-click-to-select="true"
+  		data-detail-formatter="detailFormatter"
+  		data-minimum-count-columns="2"
+  		data-show-pagination-switch="true"
+  		data-pagination="true"
+  		data-id-field="id"
+  		data-page-list="[10, 25, 50, 100, all]"
+		data-url="resources/table/data.js"
+  		data-side-pagination="server"
+
+  		data-response-handler="responseHandler">
+	</table>
+	
+	<script type="text/javascript" src="resources/table/table.js"></script>
+	
+	
 </body>
 
