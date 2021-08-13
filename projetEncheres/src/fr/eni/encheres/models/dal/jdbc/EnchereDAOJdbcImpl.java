@@ -90,8 +90,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				pstmt.setInt(4, enchere.getMontant());
 				pstmt.executeUpdate();				
 			} catch (SQLException e) {
-				throw new DALException("Problème lors de l'ajout de l'enchère. "
-						+ "Contactez votre service informatique [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("addEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
 			throw new DALException(languages.getString("noData"));
