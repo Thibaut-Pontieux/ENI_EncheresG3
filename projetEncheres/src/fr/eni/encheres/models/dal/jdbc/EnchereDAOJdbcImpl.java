@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import fr.eni.encheres.models.bo.Categorie;
 import fr.eni.encheres.models.bo.Enchere;
@@ -15,6 +16,8 @@ import fr.eni.encheres.models.dal.exception.DALException;
 
 public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	
 	private static final String SELECT_ENCHERES = "SELECT * FROM ENCHERES";
 	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES WHERE no_utilisateur = ?";
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
@@ -38,8 +41,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				listeE.add(enchere);
 			}
 		} catch (SQLException e) {
-			throw new DALException("Problème lors de la récupération des enchères. "
-					+ "Contactez votre service informatique [" + e.getMessage() + "]");
+			throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return listeE;
 	}
@@ -65,11 +67,10 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 					listeE.add(enchere);
 				}
 			} catch (SQLException e) {
-					throw new DALException("Problème lors de la récupération des enchères. "
-							+ "Contactez votre service informatique [" + e.getMessage() + "]");
+					throw new DALException(languages.getString("getUtilisateurEncheresERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
-			throw new DALException("Aucun utilisateur ciblé");
+			throw new DALException(languages.getString("noData"));
 		}
 		return listeE;
 	}
@@ -93,7 +94,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 						+ "Contactez votre service informatique [" + e.getMessage() + "]");
 			}
 		} else {
-			throw new DALException("Aucune données saisie");
+			throw new DALException(languages.getString("noData"));
 		}
 	}
 
@@ -111,11 +112,10 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				pstmt.setInt(4,  enchere.getIdArticle());
 				pstmt.executeUpdate();				
 			} catch (SQLException e) {
-				throw new DALException("Problème lors de l'ajout de l'enchère. "
-						+ "Contactez votre service informatique [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("updateEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
-			throw new DALException("Aucune données saisie");
+			throw new DALException(languages.getString("noData"));
 		}
 	}
 
@@ -134,8 +134,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				listeC.add(categorie);
 			}
 		} catch (SQLException e) {
-			throw new DALException("Problème lors de la récupération des catégories d'enchères. "
-					+ "Contactez votre service informatique [" + e.getMessage() + "]");
+			throw new DALException(languages.getString("getCategoriesERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return listeC;
 	}

@@ -45,7 +45,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 				utilisateur.setAdmin(rs.getBoolean("administrateur"));
 			}
 		} catch (SQLException e) {
-			throw new DALException("ProblÃ¨me lors de la rÃ©cupÃ©ration des catÃ©gories d'enchÃ¨res. "
+			throw new DALException("Problème lors de la récupération des catégories d'enchères. "
 					+ "Contactez votre service informatique [" + e.getMessage() + "]");
 		}
 		return utilisateur;
@@ -69,7 +69,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 						+ "Contactez votre service informatique [" + e.getMessage() + "]");
 			}
 		} else {
-			throw new DALException("Aucune donnÃ©es saisie");
+			throw new DALException("Aucune données saisie");
 		}*/
 	}
 

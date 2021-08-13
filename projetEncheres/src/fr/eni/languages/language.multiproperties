@@ -29,7 +29,7 @@
     </Columns>
     <Records>
         <Comment>
-            <Value>###Acueil#####</Value>
+            <Value>###Accueil#####</Value>
         </Comment>
         <Property>
             <Name>accueil</Name>
@@ -39,13 +39,64 @@
             <Value disabled="false">Accueil</Value>
             <Value disabled="false">Home</Value>
         </Property>
+        <Comment>
+            <Value>###Erreur###</Value>
+        </Comment>
         <Property>
-            <Name>ef</Name>
+            <Name>noData</Name>
             <Disabled>false</Disabled>
             <MultiLine>false</MultiLine>
-            <Value disabled="false">test</Value>
-            <Value disabled="false">test</Value>
-            <Value disabled="false">test</Value>
+            <Value disabled="false">Aucune donnée saisie</Value>
+            <Value disabled="false">Aucune donnée saisie</Value>
+            <Value disabled="false">No data found</Value>
+        </Property>
+        <Property>
+            <Name>getEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Error while retrieving auctions</Value>
+        </Property>
+        <Property>
+            <Name>srvInfo</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Contactez votre service informatique</Value>
+            <Value disabled="false">Contactez votre service informatique</Value>
+            <Value disabled="false">Please contact your IT service</Value>
+        </Property>
+        <Property>
+            <Name>ajoutEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de l'ajout de l'enchère.</Value>
+            <Value disabled="false">Problème lors de l'ajout de l'enchère.</Value>
+            <Value disabled="false">Error : could not add Auctions</Value>
+        </Property>
+        <Property>
+            <Name>getCategoriesERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des catégories d'enchères</Value>
+            <Value disabled="false">Problème lors de la récupération des catégories d'enchères</Value>
+            <Value disabled="false">Error : cannot retrieve auctions categories</Value>
+        </Property>
+        <Property>
+            <Name>updateEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
+            <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
+            <Value disabled="false">Error : Cannot update auction</Value>
+        </Property>
+        <Property>
+            <Name>getUtilisateurEncheresERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Error : Cannot retrieve user's auctions</Value>
         </Property>
     </Records>
 </MultiProperties>
