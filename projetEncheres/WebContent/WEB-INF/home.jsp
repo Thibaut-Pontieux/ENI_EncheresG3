@@ -3,15 +3,7 @@
 
 <body>
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
-	<script type="text/javascript" src="resources/table/table.js"></script>
-	<script type="text/javascript">
-	var enchere = [];
-	<c:forEach items="${requestScope.ListeEncheres }" var="enchere">
-		enchere.push({id: ${enchere.idArticle}, price: ${enchere.montant} })
-	</c:forEach>
-	getEncheres(enchere);
-	</script>
-
+	
 	<div class="text-center">
 		<h1>Enchères</h1>		
 	</div>
@@ -52,9 +44,17 @@
   		data-pagination="true"
   		data-id-field="id"
   		data-page-list="[10, 25, 50, 100, all]"
-  		data-url="resources/table/data.json"
   		data-side-pagination="server"
   		data-response-handler="responseHandler">
 	</table>
+	
+	<script type="text/javascript" src="resources/table/table.js"></script>
+	<script type="text/javascript">
+	var enchere = [];
+	<c:forEach items="${requestScope.ListeEncheres }" var="enchere">
+		enchere.push({id: ${enchere.idArticle}, price: ${enchere.montant} })
+	</c:forEach>
+	getEncheres(enchere);
+	</script>
 </body>
 
