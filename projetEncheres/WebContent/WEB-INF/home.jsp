@@ -55,7 +55,6 @@
   		data-page-list="[10, 25, 50, 100, all]"
 		data-url="resources/table/data.js"
   		data-side-pagination="server"
-
   		data-response-handler="responseHandler">
 	</table>
 	
