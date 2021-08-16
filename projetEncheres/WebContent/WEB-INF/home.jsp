@@ -11,7 +11,6 @@
 	</c:forEach>
 	getEncheres(enchere);
 	</script>
-	
 
 	<div class="text-center">
 		<h1>Enchères</h1>		
@@ -53,13 +52,9 @@
   		data-pagination="true"
   		data-id-field="id"
   		data-page-list="[10, 25, 50, 100, all]"
-		data-url="resources/table/data.js"
+  		data-url="resources/table/data.json"
   		data-side-pagination="server"
   		data-response-handler="responseHandler">
 	</table>
-	
-
-	
-	
 </body>
 
