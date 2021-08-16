@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.models.bll.EnchereManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
@@ -37,12 +38,17 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categorie> listeC = new ArrayList<Categorie>();
+		List<Enchere>   listeE = new ArrayList<Enchere>();
 		try {
 			listeC = enchereMgr.getCategories();
+			listeE = enchereMgr.getEncheres();
 			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("ListeEncheres", listeE);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
+		HttpSession session = request.getSession();
+		session.setAttribute("isConnected", false);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
