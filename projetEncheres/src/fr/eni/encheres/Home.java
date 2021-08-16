@@ -38,9 +38,12 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Categorie> listeC = new ArrayList<Categorie>();
+		List<Enchere>   listeE = new ArrayList<Enchere>();
 		try {
 			listeC = enchereMgr.getCategories();
+			listeE = enchereMgr.getEncheres();
 			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("ListeEncheres", listeE);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}

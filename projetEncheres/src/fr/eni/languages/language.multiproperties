@@ -29,7 +29,7 @@
     </Columns>
     <Records>
         <Comment>
-            <Value>###Accueil#####</Value>
+            <Value>###Accueil####</Value>
         </Comment>
         <Property>
             <Name>accueil</Name>
