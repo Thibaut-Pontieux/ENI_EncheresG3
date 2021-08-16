@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<% ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", Locale.FRANCE); %>
+<% ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", Locale.ENGLISH); %>
 <!DOCTYPE html>
 <html>
 <head>
