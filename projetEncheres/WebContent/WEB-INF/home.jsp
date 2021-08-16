@@ -52,8 +52,8 @@
   					<td></td>
   					<td>${enchere.idArticle}</td>
   					<td>${enchere.montant}</td>
-  					<td>${enchere.date_enchere}</td>
-  					<td>${enchere.idArticle}</td>
+  					<td>${enchere.dateEnchere}</td>
+  					<td>${enchere.utilisateur.pseudo}</td>
   					<td></td>
   				</tr>
   			</c:forEach>

@@ -17,11 +17,11 @@ import fr.eni.encheres.models.dal.exception.DALException;
 public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 
 	private static final String SELECT_ENCHERES = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article"
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur";
+			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
+			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur ";
 	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article"
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur"
+			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
+			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "WHERE no_utilisateur = ?";
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";

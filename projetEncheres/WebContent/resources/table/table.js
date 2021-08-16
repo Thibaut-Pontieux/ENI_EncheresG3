@@ -16,6 +16,7 @@ function responseHandler(res) {
 }
 
 function detailFormatter(index, row) {
+	console.log(row)
 	var html = []
  	$.each(row, function (key, value) {
       html.push('<p><b>' + key + ':</b> ' + value + '</p>')
@@ -109,9 +110,7 @@ function initTable() {
         		field: 'author',
           		title: 'Vendeur',
           		align: 'center',
-          		clickToSelect: false,
-          		events: window.operateEvents,
-          		formatter: operateFormatter
+          		clickToSelect: false
          	},
 			{
 				field: 'operate',
