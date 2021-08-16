@@ -59,8 +59,23 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String categorieEnchere = request.getParameter("catEnchere");
+		request.removeAttribute("categoriesEncheres");
+		request.removeAttribute("ListeEncheres");
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
+		try {
+			listeE = enchereMgr.getEncheres(categorieEnchere);
+			request.setAttribute("ListeEncheres", listeE);
+			listeC = enchereMgr.getCategories();
+			request.setAttribute("categoriesEncheres", listeC);
+		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+		if (rd != null) {
+			rd.forward(request, response);
+		}
 	}
 
 }

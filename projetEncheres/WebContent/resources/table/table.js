@@ -18,9 +18,10 @@ function responseHandler(res) {
 function detailFormatter(index, row) {
 	console.log(row)
 	var html = []
- 	$.each(row, function (key, value) {
-      html.push('<p><b>' + key + ':</b> ' + value + '</p>')
-    })
+	html.push('<p><b>Vendeur : </b> ' + row.author + '</p>');
+	html.push('<p><b>Date : </b> ' + row.date + '</p>');
+	html.push('<p><b>Article : </b> ' + row.name + '</p>');
+	html.push('<p><b>Prix : </b> ' + row.price + '</p>');
     return html.join('')
 }
 
@@ -72,10 +73,10 @@ function initTable() {
     	columns: [
     		[{
         		field: 'state',
-        		checkbox: true,
         		rowspan: 2,
         		align: 'center',
-        		valign: 'middle'
+        		valign: 'middle',
+				visible: false
         	},
 			 {
         	 	field: 'name',

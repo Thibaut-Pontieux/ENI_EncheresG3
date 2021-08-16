@@ -33,6 +33,20 @@ public class EnchereManager {
 		return listeE;
 	}
 	
+	public List<Enchere> getEncheres(String nomCategorie) throws BLLException {
+		BLLException exceptions = new BLLException();
+		
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		
+		try {
+			listeE = enchereDAO.getEncheres(nomCategorie);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		return listeE;
+	}
+	
 	public List<Categorie> getCategories() throws BLLException {
 		BLLException exceptions = new BLLException();
 		

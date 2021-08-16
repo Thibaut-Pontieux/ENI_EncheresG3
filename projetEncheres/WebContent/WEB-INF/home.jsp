@@ -17,22 +17,24 @@
 		</div>
 	</c:if>
 	<div class="container">	
-		<div class="w-50 mx-auto">
-  			<select class="form-select form-select-padding-x-lg" id="locale">
-  				<c:if test="${not empty requestScope.categoriesEncheres }">
-  					<c:forEach var="categorie" items="${requestScope.categoriesEncheres }">
-  						<option value="${categorie.getLibelle() }">${categorie.getLibelle() }</option>
-  					</c:forEach>
-  				</c:if>
-  			</select>
-		</div>
+		<form action="${pageContext.request.contextPath }/encheres" method="POST" class="mx-auto">
+			<div class="input-group w-50 mx-auto">
+  				<select class="form-select form-select-padding-x-lg" name="catEnchere">
+  					<c:if test="${not empty requestScope.categoriesEncheres }">
+  						<c:forEach var="categorie" items="${requestScope.categoriesEncheres }">
+  							<option value="${categorie.getLibelle() }">${categorie.getLibelle() }</option>
+  						</c:forEach>
+  					</c:if>
+  				</select>
+  				<input type="submit" name="chercher" class="btn btn-success btn-lg" value="Chercher"> 
+			</div>
+		</form>
 	</div>
 	<table
   		id="table"
   		data-toolbar="#toolbar"
   		data-search="true"
   		data-show-refresh="true"
-  		data-show-toggle="true"
   		data-show-columns="true"
   		data-show-columns-toggle-all="true"
   		data-detail-view="true"
@@ -50,7 +52,7 @@
   			<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
   				<tr>
   					<td></td>
-  					<td>${enchere.idArticle}</td>
+  					<td>${enchere.nomArticle}</td>
   					<td>${enchere.montant}</td>
   					<td>${enchere.dateEnchere}</td>
   					<td>${enchere.utilisateur.pseudo}</td>
@@ -61,6 +63,5 @@
 	</table>
 	
 	<script type="text/javascript" src="resources/table/table.js"></script>
-
 </body>
 
