@@ -5,7 +5,7 @@
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
 	
 	<div class="text-center">
-		<h1>Enchères</h1>		
+		<h1><%= languages.getString("enchere") %></h1>		
 	</div>
 	<c:if test="${not empty requestScope.erreurs}">
 		<div>
@@ -46,15 +46,21 @@
   		data-page-list="[10, 25, 50, 100, all]"
   		data-side-pagination="server"
   		data-response-handler="responseHandler">
+  		<tbody>
+  			<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
+  				<tr>
+  					<td></td>
+  					<td>${enchere.idArticle}</td>
+  					<td>${enchere.montant}</td>
+  					<td>${enchere.date_enchere}</td>
+  					<td>${enchere.idArticle}</td>
+  					<td></td>
+  				</tr>
+  			</c:forEach>
+  		</tbody>
 	</table>
 	
 	<script type="text/javascript" src="resources/table/table.js"></script>
-	<script type="text/javascript">
-	var enchere = [];
-	<c:forEach items="${requestScope.ListeEncheres }" var="enchere">
-		enchere.push({id: ${enchere.idArticle}, price: ${enchere.montant} })
-	</c:forEach>
-	getEncheres(enchere);
-	</script>
+
 </body>
 

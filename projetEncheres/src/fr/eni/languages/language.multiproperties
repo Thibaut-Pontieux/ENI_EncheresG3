@@ -29,7 +29,7 @@
     </Columns>
     <Records>
         <Comment>
-            <Value>Accueil</Value>
+            <Value>###Accueil####</Value>
         </Comment>
         <Property>
             <Name>accueil</Name>
@@ -38,6 +38,30 @@
             <Value disabled="false">Accueil</Value>
             <Value disabled="false">Accueil</Value>
             <Value disabled="false">Home</Value>
+        </Property>
+        <Property>
+            <Name>enchere</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Enchère</Value>
+            <Value disabled="false">Enchère</Value>
+            <Value disabled="false">Auction</Value>
+        </Property>
+        <Property>
+            <Name>connexion</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Connexion/Inscription</Value>
+            <Value disabled="false">Connexion/Inscription</Value>
+            <Value disabled="false">Login/Register</Value>
+        </Property>
+        <Property>
+            <Name>deconnexion</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Déconnexion</Value>
+            <Value disabled="false">Déconnexion</Value>
+            <Value disabled="false">Logout</Value>
         </Property>
     </Records>
 </MultiProperties>
