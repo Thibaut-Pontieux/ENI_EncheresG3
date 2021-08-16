@@ -8,10 +8,6 @@ function getIdSelections() {
     })
 }
 
-function getEncheres(encheres){
-	encheres.forEach(element => console.log(element))
-}
-
 function responseHandler(res) {
 	$.each(res.rows, function (i, row) {
       		row.state = $.inArray(row.id, selections) !== -1
@@ -135,9 +131,6 @@ function initTable() {
       		// save your data, here just save the current page
       		selections = getIdSelections()
       		// push or splice the selections if you want to save all data selections
-    })
-    $table.on('all.bs.table', function (e, name, args) {
-      console.log(name, args)
     })
     $remove.click(function () {
       var ids = getIdSelections()
