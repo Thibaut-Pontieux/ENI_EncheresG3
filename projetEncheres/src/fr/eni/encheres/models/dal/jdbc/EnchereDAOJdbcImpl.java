@@ -36,11 +36,12 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
 	
 	@Override
-	public List<Enchere> getEncheres() throws DALException {
+	public List<Enchere> getEncheres() throws DALException, SQLException {
+		Connection cnx = null;
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		try {
 			Enchere enchere = null;
-			Connection cnx = ConnectionProvider.getConnection();
+			cnx = ConnectionProvider.getConnection();
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ENCHERES);
 			while(rs.next()) {
@@ -61,20 +62,23 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				enchere.setUtilisateur(u);
 				listeE.add(enchere);
 			}
+			cnx.close();
 		} catch (SQLException e) {
+			cnx.close();
 			throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return listeE;
 	}
 
 	@Override
-	public List<Enchere> getUserEncheres(int idUser) throws DALException {
+	public List<Enchere> getUserEncheres(int idUser) throws DALException, SQLException {
+		Connection cnx = null;
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		if (idUser != 0)
 		{
 			try {
 				Enchere enchere = null;
-				Connection cnx = ConnectionProvider.getConnection();
+				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_MES_ENCHERES);
 				pstmt.setInt(1, idUser);
 				pstmt.executeUpdate();
@@ -87,8 +91,10 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 					enchere.setMontant(rs.getInt("montant_enchere"));
 					listeE.add(enchere);
 				}
+				cnx.close();
 			} catch (SQLException e) {
-					throw new DALException(languages.getString("getUtilisateurEncheresERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+				cnx.close();
+				throw new DALException(languages.getString("getUtilisateurEncheresERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
 			throw new DALException(languages.getString("noData"));
@@ -109,8 +115,10 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				pstmt.setInt(2,  enchere.getIdArticle());
 				pstmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere().toString()));
 				pstmt.setInt(4, enchere.getMontant());
-				pstmt.executeUpdate();				
+				pstmt.executeUpdate();	
+				cnx.close();
 			} catch (SQLException e) {
+				cnx.close();
 				throw new DALException(languages.getString("addEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
@@ -130,8 +138,10 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				pstmt.setInt(2, enchere.getMontant());
 				pstmt.setInt(3,  enchere.getIdUtilisateur());
 				pstmt.setInt(4,  enchere.getIdArticle());
-				pstmt.executeUpdate();				
+				pstmt.executeUpdate();		
+				cnx.close();
 			} catch (SQLException e) {
+				cnx.close();
 				throw new DALException(languages.getString("updateEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
@@ -140,11 +150,12 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 	}
 
 	@Override
-	public List<Categorie> getCategories() throws DALException {
+	public List<Categorie> getCategories() throws DALException, SQLException {
+		Connection cnx = null;
 		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
 			Categorie categorie = null;
-			Connection cnx = ConnectionProvider.getConnection();
+			cnx = ConnectionProvider.getConnection();
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_CATEGORIES);
 			while(rs.next()) {
@@ -153,20 +164,23 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				categorie.setLibelle(rs.getString("libelle"));
 				listeC.add(categorie);
 			}
+			cnx.close();
 		} catch (SQLException e) {
+			cnx.close();
 			throw new DALException(languages.getString("getCategoriesERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return listeC;
 	}
 
 	@Override
-	public List<Enchere> getEncheres(String nomCat) throws DALException {
+	public List<Enchere> getEncheres(String nomCat) throws DALException, SQLException {
+		Connection cnx = null;
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		if (nomCat != null)
 		{
 			try {
 				Enchere enchere = null;
-				Connection cnx = ConnectionProvider.getConnection();
+				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ENCHERES_FILTRE);
 				pstmt.setString(1, nomCat);
 				pstmt.executeQuery();
@@ -189,7 +203,9 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 					enchere.setUtilisateur(u);
 					listeE.add(enchere);
 				}
+				cnx.close();
 			} catch (SQLException e) {
+				cnx.close();
 				throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		}

@@ -16,7 +16,6 @@ function responseHandler(res) {
 }
 
 function detailFormatter(index, row) {
-	console.log(row)
 	var html = []
 	html.push('<p><b>Vendeur : </b> ' + row.author + '</p>');
 	html.push('<p><b>Date : </b> ' + row.date + '</p>');

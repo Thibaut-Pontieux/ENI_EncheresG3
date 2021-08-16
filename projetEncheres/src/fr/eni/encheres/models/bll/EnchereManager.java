@@ -29,6 +29,9 @@ public class EnchereManager {
 		} catch (DALException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
 		}
 		return listeE;
 	}
@@ -43,6 +46,9 @@ public class EnchereManager {
 		} catch (DALException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
 		}
 		return listeE;
 	}
@@ -55,6 +61,9 @@ public class EnchereManager {
 		try {
 			listeC = enchereDAO.getCategories();
 		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
 		}
