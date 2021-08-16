@@ -10,13 +10,19 @@ import java.util.List;
 
 import fr.eni.encheres.models.bo.Categorie;
 import fr.eni.encheres.models.bo.Enchere;
+import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.EnchereDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
 
 public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 
-	private static final String SELECT_ENCHERES = "SELECT * FROM ENCHERES";
-	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES WHERE no_utilisateur = ?";
+	private static final String SELECT_ENCHERES = "SELECT * FROM ENCHERES e "
+			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article"
+			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur";
+	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES "
+			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article"
+			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur"
+			+ "WHERE no_utilisateur = ?";
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
@@ -33,8 +39,18 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				enchere = new Enchere();
 				enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
 				enchere.setIdArticle(rs.getInt("no_article"));
+				enchere.setIdCategorie(rs.getInt("no_categorie"));
 				enchere.setDate_enchere(rs.getDate("date_enchere"));
 				enchere.setMontant(rs.getInt("montant_enchere"));
+				enchere.setNomArticle(rs.getString("nom_article"));
+				enchere.setDescription(rs.getString("description"));
+				enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
+				enchere.setDateFinEnchere(rs.getDate("date_fin_encheres"));
+				enchere.setPrixInitial(rs.getInt("prix_initial"));
+				enchere.setPrixFinal(rs.getInt("prix_vente"));
+				Utilisateur u = new Utilisateur();
+				u.setPseudo(rs.getString("pseudo"));
+				enchere.setUtilisateur(u);
 				listeE.add(enchere);
 			}
 		} catch (SQLException e) {
@@ -85,7 +101,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
 				pstmt.setInt(1,  enchere.getIdUtilisateur());
 				pstmt.setInt(2,  enchere.getIdArticle());
-				pstmt.setDate(3, java.sql.Date.valueOf(enchere.getDate_enchere().toString()));
+				pstmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere().toString()));
 				pstmt.setInt(4, enchere.getMontant());
 				pstmt.executeUpdate();				
 			} catch (SQLException e) {
@@ -105,7 +121,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			try {
 				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
-				pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDate_enchere().toString()));
+				pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere().toString()));
 				pstmt.setInt(2, enchere.getMontant());
 				pstmt.setInt(3,  enchere.getIdUtilisateur());
 				pstmt.setInt(4,  enchere.getIdArticle());

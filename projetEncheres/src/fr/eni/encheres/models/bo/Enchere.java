@@ -5,18 +5,26 @@ import java.util.Date;
 public class Enchere {
 	private int idUtilisateur;
 	private int idArticle;
-	private Date date_enchere;
+	private int idCategorie;
+	private Date dateEnchere;
 	private int montant;
-	
+	private String nomArticle;
+	private String description;
+	private Date dateDebutEnchere;
+	private Date dateFinEnchere;
+	private int prixInitial;
+	private int prixFinal;
+	private Utilisateur utilisateur;
+
 	public Enchere() {
 		super();
 	}
-	
-	public Enchere(int idUtilisateur, int idArticle, Date date_enchere, int montant) {
+
+	public Enchere(int idUtilisateur, int idArticle, Date dateEnchere, int montant) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.idArticle = idArticle;
-		this.date_enchere = date_enchere;
+		this.dateEnchere = dateEnchere;
 		this.montant = montant;
 	}
 
@@ -51,15 +59,15 @@ public class Enchere {
 	/**
 	 * @return the date_enchere
 	 */
-	public Date getDate_enchere() {
-		return date_enchere;
+	public Date getDateEnchere() {
+		return dateEnchere;
 	}
 
 	/**
 	 * @param date_enchere the date_enchere to set
 	 */
-	public void setDate_enchere(Date date_enchere) {
-		this.date_enchere = date_enchere;
+	public void setDate_enchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
 	}
 
 	/**
@@ -75,7 +83,74 @@ public class Enchere {
 	public void setMontant(int montant) {
 		this.montant = montant;
 	}
-	
-	
+
+	public int getIdCategorie() {
+		return idCategorie;
+	}
+
+	public void setIdCategorie(int idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
+	public String getNomArticle() {
+		return nomArticle;
+	}
+
+	public void setNomArticle(String nomArticle) {
+		this.nomArticle = nomArticle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getDateDebutEnchere() {
+		return dateDebutEnchere;
+	}
+
+	public void setDateDebutEnchere(Date dateDebutEnchere) {
+		this.dateDebutEnchere = dateDebutEnchere;
+	}
+
+	public Date getDateFinEnchere() {
+		return dateFinEnchere;
+	}
+
+	public void setDateFinEnchere(Date dateFinEnchere) {
+		this.dateFinEnchere = dateFinEnchere;
+	}
+
+	public int getPrixInitial() {
+		return prixInitial;
+	}
+
+	public void setPrixInitial(int prixInitial) {
+		this.prixInitial = prixInitial;
+	}
+
+	public int getPrixFinal() {
+		return prixFinal;
+	}
+
+	public void setPrixFinal(int prixFinal) {
+		this.prixFinal = prixFinal;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
+	}
+
 	
 }
