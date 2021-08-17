@@ -63,11 +63,17 @@ public class Home extends HttpServlet {
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
+			// Création d'attributs contenant les catégories d'enchères et la catégorie sélectionnée par l'utilisateur
 			request.setAttribute("selectedEnchere", categorieEnchere);
-			listeE = enchereMgr.getEncheres(categorieEnchere);
-			request.setAttribute("ListeEncheres", listeE);
 			listeC = enchereMgr.getCategories();
 			request.setAttribute("categoriesEncheres", listeC);
+			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
+			if (categorieEnchere.equals("Tout"))
+				listeE = enchereMgr.getEncheres();
+			// Sinon on filtre suivant la catégorie sélectionnée
+			else
+				listeE = enchereMgr.getEncheres(categorieEnchere);
+			request.setAttribute("ListeEncheres", listeE);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}

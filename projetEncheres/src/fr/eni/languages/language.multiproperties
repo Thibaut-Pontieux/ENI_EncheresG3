@@ -122,6 +122,14 @@
             <Value disabled="false">Informations</Value>
             <Value disabled="false">Informations</Value>
         </Property>
+        <Property>
+            <Name>toutesCat</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Toutes catégories</Value>
+            <Value disabled="false">Toutes catégories</Value>
+            <Value disabled="false">All categories</Value>
+        </Property>
         <Comment>
             <Value>###Erreur###</Value>
         </Comment>

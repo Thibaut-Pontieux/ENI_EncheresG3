@@ -20,6 +20,7 @@
 			<div class="input-group w-50 mx-auto">
   				<select class="form-select form-select-padding-x-lg" name="catEnchere">
   					<c:if test="${not empty requestScope.categoriesEncheres}">
+  						<option value="Tout" selected><%= languages.getString("toutesCat") %></option>
   						<c:forEach var="categorie" items="${requestScope.categoriesEncheres}">
   							<c:if test="${categorie.getLibelle().equals(requestScope.selectedEnchere)}">
   								<option value="${categorie.getLibelle()}" selected>${categorie.getLibelle()}</option>
