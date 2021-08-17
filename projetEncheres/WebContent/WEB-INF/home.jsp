@@ -60,6 +60,7 @@
   					<td>${enchere.nomArticle}</td>
   					<td>${enchere.montant}</td>
   					<td>${enchere.dateEnchere}</td>
+  					<td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
   					<td>${enchere.utilisateur.pseudo}</td>
   					<td></td>
   				</tr>
