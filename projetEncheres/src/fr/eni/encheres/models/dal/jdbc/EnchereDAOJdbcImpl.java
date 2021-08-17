@@ -19,18 +19,17 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 
 	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
 	
-	private static final String SELECT_ENCHERES = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur ";
+	private static final String SELECT_ENCHERES = "SELECT * FROM ARTICLES_VENDUS a "
+			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur";
 	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES e "
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "WHERE no_utilisateur = ?";
-	private static final String SELECT_ENCHERES_FILTRE = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
+	private static final String SELECT_ENCHERES_FILTRE = "SELECT * FROM ARTICLES_VENDUS a "
+			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 			+ "WHERE  c.libelle = ?";
+
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
@@ -49,8 +48,6 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
 				enchere.setIdArticle(rs.getInt("no_article"));
 				enchere.setIdCategorie(rs.getInt("no_categorie"));
-				enchere.setDate_enchere(rs.getDate("date_enchere"));
-				enchere.setMontant(rs.getInt("montant_enchere"));
 				enchere.setNomArticle(rs.getString("nom_article"));
 				enchere.setDescription(rs.getString("description"));
 				enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
@@ -190,8 +187,6 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 					enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
 					enchere.setIdArticle(rs.getInt("no_article"));
 					enchere.setIdCategorie(rs.getInt("no_categorie"));
-					enchere.setDate_enchere(rs.getDate("date_enchere"));
-					enchere.setMontant(rs.getInt("montant_enchere"));
 					enchere.setNomArticle(rs.getString("nom_article"));
 					enchere.setDescription(rs.getString("description"));
 					enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
