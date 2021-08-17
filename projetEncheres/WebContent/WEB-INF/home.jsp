@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <body>
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
 	
@@ -59,8 +60,7 @@
   				<tr>
   					<td></td>
   					<td>${enchere.nomArticle}</td>
-  					<td>${enchere.montant}</td>
-  					<td>${enchere.dateEnchere}</td>
+  					<td>${enchere.prixInitial} COIN</td>
   					<td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
   					<td>${enchere.utilisateur.pseudo}</td>
   					<td></td>
