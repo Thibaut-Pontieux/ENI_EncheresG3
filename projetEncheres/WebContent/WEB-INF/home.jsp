@@ -1,11 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <body>
 	<%@include file="/WEB-INF/layout/navbar.jspf" %>
 	
 	<div class="text-center">
-		<h1><%= languages.getString("enchere") %></h1>		
+		<h1><%= languages.getString("encheres") %></h1>		
 	</div>
 	<c:if test="${not empty requestScope.erreurs}">
 		<div>
@@ -17,17 +16,24 @@
 		</div>
 	</c:if>
 	<div class="container">	
-		<div class="w-50 mx-auto">
-  			<select class="form-select form-select-padding-x-lg" id="locale">
-  				<c:if test="${not empty requestScope.categoriesEncheres }">
-  					<c:forEach var="categorie" items="${requestScope.categoriesEncheres }">
-  						<option value="${categorie.getLibelle() }">${categorie.getLibelle() }</option>
-  					</c:forEach>
-  				</c:if>
-  			</select>
-  			<button id="buttonR" class="btn btn-secondary">refresh</button>
-  			<input type="text" id="buttonS" maxlength="30">
-		</div>
+		<form action="${pageContext.request.contextPath }/encheres" method="POST" class="mx-auto">
+			<div class="input-group w-50 mx-auto">
+  				<select class="form-select form-select-padding-x-lg" name="catEnchere">
+  					<c:if test="${not empty requestScope.categoriesEncheres}">
+  						<option value="Tout" selected><%= languages.getString("toutesCat") %></option>
+  						<c:forEach var="categorie" items="${requestScope.categoriesEncheres}">
+  							<c:if test="${categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}" selected>${categorie.getLibelle()}</option>
+  							</c:if>
+  							<c:if test="${! categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}">${categorie.getLibelle()}</option>
+  							</c:if>
+  						</c:forEach>
+  					</c:if>
+  				</select>
+  				<input type="submit" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>"> 
+			</div>
+		</form>
 	</div>
 
 	<table
@@ -45,7 +51,7 @@
   			<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
   				<tr>	
   					<td></td>
-  					<td>${enchere.idArticle}</td>
+  					<td>${enchere.nomArticle}</td>
   					<td>${enchere.montant}</td>
   					<td>${enchere.utilisateur.pseudo}</td>
   					<td>${enchere.dateEnchere}</td>
@@ -55,25 +61,91 @@
   		</tbody>
 	</table>
 	
-
-	
-	<script type="text/javascript" src="resources/table/table.js"></script>
-	
 	<script>
-  var $table = $('#table')
-  var $button = $('#button')
+		function detailFormatter(index, row) {
+			var html = []
+			html.push('<p><b><%= languages.getString("vendeur") %> : </b> ' + row.author + '</p>');
+			html.push('<p><b><%= languages.getString("date") %> : </b> ' + row.date + '</p>');
+			html.push('<p><b><%= languages.getString("article") %> : </b> ' + row.name + '</p>');
+			html.push('<p><b><%= languages.getString("prix") %> : </b> ' + row.price + '</p>');
+	    	return html.join('')
+		}
+		
+		$(function() {
+			$table.bootstrapTable('destroy').bootstrapTable({
+		    	height: 550,
+		    	columns: [
+		    		[{
+		        		field: 'state',
+		        		rowspan: 2,
+		        		align: 'center',
+		        		valign: 'middle',
+						visible: false
+		        	},
+					 {
+		        	 	field: 'name',
+		         	 	title: '<%= languages.getString("article") %>',
+		        		rowspan: 2,
+		        		align: 'center',
+		        		valign: 'middle',
+		        		sortable: true,
+		        		footerFormatter: totalTextFormatter
+		        	 },
+					  {
+		        	  	title: '<%= languages.getString("informations") %>',
+		        	  	colspan: 4,
+		        	  	align: 'center'
+		        	  }],
+		        	[
+				 	{
+		        		field: 'price',
+		        	  	title: '<%= languages.getString("prix") %>',
+		          		sortable: true,
+		         		align: 'center',
+		          		footerFormatter: totalPriceFormatter
+		         	},
+					{
+		        		field: 'date',
+		        	  	title: '<%= languages.getString("date") %>',
+		          		sortable: true,
+		         		align: 'center',
+		          		footerFormatter: totalPriceFormatter
+		         	},
+				 	{
+		        		field: 'author',
+		          		title: '<%= languages.getString("vendeur") %>',
+		          		align: 'center',
+		          		clickToSelect: false
+		         	},
+					{
+						field: 'operate',
+		          		title: '<%= languages.getString("actions") %>',
+		          		align: 'center',
+		          		clickToSelect: false,
+		          		events: window.operateEvents,
+		          		formatter: operateFormatter
+					}]
+		      	],
+		    })
+		    $table.on('check.bs.table uncheck.bs.table ' +
+		      			'check-all.bs.table uncheck-all.bs.table',
+		    	function () {
+		      		$remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
 
-  $(function() {
-    $buttonR.click(function () {
-      $table.bootstrapTable('refresh')
-    })
-    
-    $buttonS.click(function ()) {
-    	$table.bootstrapTable('search')
-    }
-    
-  })
-</script>
-
+		      		// save your data, here just save the current page
+		      		selections = getIdSelections()
+		      		// push or splice the selections if you want to save all data selections
+		    })
+		    $remove.click(function () {
+		      var ids = getIdSelections()
+		      $table.bootstrapTable('remove', {
+		        field: 'id',
+		        values: ids
+		      })
+		      $remove.prop('disabled', true)
+		    })
+		  })
+	</script>
+	<script type="text/javascript" src="resources/table/table.js"></script>
 </body>
 

@@ -29,6 +29,26 @@ public class EnchereManager {
 		} catch (DALException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		return listeE;
+	}
+	
+	public List<Enchere> getEncheres(String nomCategorie) throws BLLException {
+		BLLException exceptions = new BLLException();
+		
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		
+		try {
+			listeE = enchereDAO.getEncheres(nomCategorie);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
 		}
 		return listeE;
 	}
@@ -41,6 +61,9 @@ public class EnchereManager {
 		try {
 			listeC = enchereDAO.getCategories();
 		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
 		}

@@ -29,7 +29,7 @@
     </Columns>
     <Records>
         <Comment>
-            <Value>###Accueil####</Value>
+            <Value>###Accueil###</Value>
         </Comment>
         <Property>
             <Name>accueil</Name>
@@ -40,12 +40,20 @@
             <Value disabled="false">Home</Value>
         </Property>
         <Property>
-            <Name>enchere</Name>
+            <Name>chercher</Name>
             <Disabled>false</Disabled>
             <MultiLine>false</MultiLine>
-            <Value disabled="false">Enchère</Value>
-            <Value disabled="false">Enchère</Value>
-            <Value disabled="false">Auction</Value>
+            <Value disabled="false">Chercher</Value>
+            <Value disabled="false">Chercher</Value>
+            <Value disabled="false">Search</Value>
+        </Property>
+        <Property>
+            <Name>encheres</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Enchères</Value>
+            <Value disabled="false">Enchères</Value>
+            <Value disabled="false">Auctions</Value>
         </Property>
         <Property>
             <Name>connexion</Name>
@@ -62,6 +70,132 @@
             <Value disabled="false">Déconnexion</Value>
             <Value disabled="false">Déconnexion</Value>
             <Value disabled="false">Logout</Value>
+        </Property>
+        <Comment>
+            <Value>###Tableau###</Value>
+        </Comment>
+        <Property>
+            <Name>article</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Article</Value>
+            <Value disabled="false">Article</Value>
+            <Value disabled="false">Article</Value>
+        </Property>
+        <Property>
+            <Name>prix</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Prix</Value>
+            <Value disabled="false">Prix</Value>
+            <Value disabled="false">Price</Value>
+        </Property>
+        <Property>
+            <Name>date</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Date</Value>
+            <Value disabled="false">Date</Value>
+            <Value disabled="false">Date</Value>
+        </Property>
+        <Property>
+            <Name>vendeur</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Vendeur</Value>
+            <Value disabled="false">Vendeur</Value>
+            <Value disabled="false">Seller</Value>
+        </Property>
+        <Property>
+            <Name>actions</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Actions</Value>
+            <Value disabled="false">Actions</Value>
+            <Value disabled="false">Actions</Value>
+        </Property>
+        <Property>
+            <Name>informations</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Informations</Value>
+            <Value disabled="false">Informations</Value>
+            <Value disabled="false">Informations</Value>
+        </Property>
+        <Property>
+            <Name>toutesCat</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Toutes catégories</Value>
+            <Value disabled="false">Toutes catégories</Value>
+            <Value disabled="false">All categories</Value>
+        </Property>
+        <Comment>
+            <Value>###Erreur###</Value>
+        </Comment>
+        <Property>
+            <Name>noData</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Aucune donnée saisie</Value>
+            <Value disabled="false">Aucune donnée saisie</Value>
+            <Value disabled="false">No data found</Value>
+        </Property>
+        <Property>
+            <Name>getEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Error : cannot retrieve auctions.</Value>
+        </Property>
+        <Property>
+            <Name>srvInfo</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Contactez votre service informatique</Value>
+            <Value disabled="false">Contactez votre service informatique</Value>
+            <Value disabled="false">Please contact your IT service</Value>
+        </Property>
+        <Property>
+            <Name>ajoutEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de l'ajout de l'enchère.</Value>
+            <Value disabled="false">Problème lors de l'ajout de l'enchère.</Value>
+            <Value disabled="false">Error : could not add Auctions</Value>
+        </Property>
+        <Property>
+            <Name>getCategoriesERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des catégories d'enchères</Value>
+            <Value disabled="false">Problème lors de la récupération des catégories d'enchères</Value>
+            <Value disabled="false">Error : cannot retrieve auctions categories</Value>
+        </Property>
+        <Property>
+            <Name>updateEnchereERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
+            <Value disabled="false">Problème lors de la mise à jour de l'enchère</Value>
+            <Value disabled="false">Error : cannot update auction</Value>
+        </Property>
+        <Property>
+            <Name>getUtilisateurEncheresERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Problème lors de la récupération des enchères.</Value>
+            <Value disabled="false">Error : cannot retrieve user's auctions</Value>
+        </Property>
+        <Property>
+            <Name>getUtilisateurERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
+            <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
+            <Value disabled="false">Error : cannot retrieve users.</Value>
         </Property>
     </Records>
 </MultiProperties>
