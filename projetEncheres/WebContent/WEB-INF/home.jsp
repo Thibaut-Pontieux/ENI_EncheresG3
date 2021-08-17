@@ -19,9 +19,14 @@
 		<form action="${pageContext.request.contextPath }/encheres" method="POST" class="mx-auto">
 			<div class="input-group w-50 mx-auto">
   				<select class="form-select form-select-padding-x-lg" name="catEnchere">
-  					<c:if test="${not empty requestScope.categoriesEncheres }">
-  						<c:forEach var="categorie" items="${requestScope.categoriesEncheres }">
-  							<option value="${categorie.getLibelle() }">${categorie.getLibelle() }</option>
+  					<c:if test="${not empty requestScope.categoriesEncheres}">
+  						<c:forEach var="categorie" items="${requestScope.categoriesEncheres}">
+  							<c:if test="${categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}" selected>${categorie.getLibelle()}</option>
+  							</c:if>
+  							<c:if test="${! categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}">${categorie.getLibelle()}</option>
+  							</c:if>
   						</c:forEach>
   					</c:if>
   				</select>

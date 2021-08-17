@@ -60,11 +60,10 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categorieEnchere = request.getParameter("catEnchere");
-		request.removeAttribute("categoriesEncheres");
-		request.removeAttribute("ListeEncheres");
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
+			request.setAttribute("selectedEnchere", categorieEnchere);
 			listeE = enchereMgr.getEncheres(categorieEnchere);
 			request.setAttribute("ListeEncheres", listeE);
 			listeC = enchereMgr.getCategories();
