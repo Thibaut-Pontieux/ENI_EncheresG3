@@ -9,7 +9,7 @@ import fr.eni.encheres.models.dal.exception.DALException;
 
 public interface EnchereDAO {
 	List<Enchere> getEncheres() throws DALException, SQLException;
-	List<Enchere> getEncheres(String nomCat) throws DALException, SQLException;
+	List<Enchere> getEncheres(String nomCat, String search) throws DALException, SQLException;
 	List<Enchere> getUserEncheres(int idUser) throws DALException, SQLException;
 	List<Categorie> getCategories() throws DALException, SQLException;
 	void insertEnchere(Enchere enchere) throws DALException, SQLException;

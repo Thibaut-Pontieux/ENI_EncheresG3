@@ -30,7 +30,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
-			+ "WHERE  c.libelle = ?";
+			+ "WHERE  c.libelle LIKE('%?%') AND  (a.nom_article LIKE('%?%') OR u.pseudo LIKE ('%?%'))" ;
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
@@ -173,16 +173,16 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 	}
 
 	@Override
-	public List<Enchere> getEncheres(String nomCat) throws DALException, SQLException {
+	public List<Enchere> getEncheres(String nomCat, String search) throws DALException, SQLException {
 		Connection cnx = null;
 		List<Enchere> listeE = new ArrayList<Enchere>();
-		if (nomCat != null)
-		{
 			try {
 				Enchere enchere = null;
 				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_ENCHERES_FILTRE);
 				pstmt.setString(1, nomCat);
+				pstmt.setString(2, search);
+				pstmt.setString(3, search);
 				pstmt.executeQuery();
 				ResultSet rs = pstmt.getResultSet();
 				while(rs.next()) {
@@ -207,8 +207,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			} catch (SQLException e) {
 				cnx.close();
 				throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
-			}
-		}
+			}	
 		return listeE;
 	}
 }

@@ -31,6 +31,7 @@
   						</c:forEach>
   					</c:if>
   				</select>
+  				<input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
   				<input type="submit" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>"> 
 			</div>
 		</form>
@@ -48,16 +49,18 @@
   		data-side-pagination="server"
   		data-response-handler="responseHandler">
   		<tbody>
-  			<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
-  				<tr>	
-  					<td></td>
-  					<td>${enchere.nomArticle}</td>
-  					<td>${enchere.montant}</td>
-  					<td>${enchere.utilisateur.pseudo}</td>
-  					<td>${enchere.dateEnchere}</td>
-  					<td></td>
-  				</tr>
-  			</c:forEach>
+  			<c:if test="${not empty requestScope.ListeEncheres}">
+  				<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
+  					<tr>	
+  						<td></td>
+  						<td>${enchere.nomArticle}</td>
+  						<td>${enchere.montant} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
+  						<td>${enchere.utilisateur.pseudo}</td>
+  						<td>${enchere.dateEnchere}</td>
+  						<td></td>
+  					</tr>
+  				</c:forEach>
+  			</c:if>
   		</tbody>
 	</table>
 	
