@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.models.bll.UtilisateurManager;
+import fr.eni.encheres.models.bll.exceptions.BLLException;
+
 /**
  * Servlet implementation class signInPage
  */
@@ -18,12 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 public class signInPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private UtilisateurManager utilisateurMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public signInPage() {
         super();
-        // TODO Auto-generated constructor stub
+        this.utilisateurMgr = new UtilisateurManager();
     }
 
 	/**
@@ -51,6 +55,11 @@ public class signInPage extends HttpServlet {
 		 String postalcode = request.getParameter("postalcode");
 		 String city = request.getParameter("city");
 		  
+		 try {
+			 utilisateurMgr.ajouterUtilisateur(nom, prenom, pseudo, email, mdp, phone, street, postalcode, city);
+		 } catch (BLLException e) {
+			 request.setAttribute("erreurs", e.getListeMessagesErreur());
+		 }
 		 String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		 String phoneregex = "/^((\\+|00)33\\s?|0)[1-59](\\s?\\d{2}){4}$/";
 		 String postalcoderegex = "/^0[1-9]|[1-8][0-9]|9[0-8]|2A|2B[0-9]{3}$/";
@@ -60,16 +69,16 @@ public class signInPage extends HttpServlet {
 		 Pattern postalcodepattern = Pattern.compile(postalcoderegex);
 		 
 		 if (pattern.matcher(email).matches() == false) {
-		 request.setAttribute("error", "format invalid");
-			}
+			 request.setAttribute("error", "format invalid");
+		 }
 		 
 		 if (phonepattern.matcher(phone).matches() == false) {
-		 request.setAttribute("errorphone", "format invalid");
-			}
+			 request.setAttribute("errorphone", "format invalid");
+		 }
 		 
 		 if (postalcodepattern.matcher(postalcode).matches() == false) {
-		 request.setAttribute("errorpostalcode", "format invalid");
-			}
+			 request.setAttribute("errorpostalcode", "format invalid");
+		 }
 	
 	        
         request.setAttribute("nom", nom);

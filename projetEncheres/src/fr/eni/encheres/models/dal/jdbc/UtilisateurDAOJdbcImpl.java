@@ -5,12 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import fr.eni.encheres.models.bo.Categorie;
-import fr.eni.encheres.models.bo.Enchere;
 import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.UtilisateurDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
@@ -20,7 +17,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,0,false)";
+	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,0,false)";
 	
 	@Override
 	public List<Utilisateur> getListeUtilisateurs() throws DALException {
@@ -70,15 +67,15 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 			try {
 				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(INSERT_USER);
-				pstmt.setInt(1,  	utilisateur.getIdUtilisateur());
-				pstmt.setString(1,  utilisateur.getNom());
-				pstmt.setString(1,  utilisateur.getPrenom());
-				pstmt.setString(1,  utilisateur.getEmail());
-				pstmt.setString(1,  utilisateur.getTelephone());
-				pstmt.setString(1,  utilisateur.getCode_postal());
-				pstmt.setString(1,  utilisateur.getVille());
-				pstmt.setString(1,  utilisateur.getMdp());
-				pstmt.setInt(1,  utilisateur.getCredit());
+				pstmt.setString(1,  utilisateur.getPseudo());
+				pstmt.setString(2,  utilisateur.getNom());
+				pstmt.setString(3,  utilisateur.getPrenom());
+				pstmt.setString(4,  utilisateur.getEmail());
+				pstmt.setString(5,  utilisateur.getTelephone());
+				pstmt.setString(6,  utilisateur.getRue());
+				pstmt.setString(7,  utilisateur.getCode_postal());
+				pstmt.setString(8,  utilisateur.getVille());
+				pstmt.setString(9, utilisateur.getMdp());
 				pstmt.executeUpdate();				
 			} catch (SQLException e) {
 				throw new DALException(languages.getString("addUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
