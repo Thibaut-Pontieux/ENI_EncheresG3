@@ -54,12 +54,12 @@
   			<c:if test="${not empty requestScope.ListeEncheres}">
   				<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
   					<tr>	
-  						<td></td>
-  						<td>${enchere.nomArticle}</td>
-  						<td>${enchere.montant} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
-  						<td>${enchere.utilisateur.pseudo}</td>
-  						<td>${enchere.dateEnchere}</td>
-  						<td></td>
+  					  <td></td>
+                      <td>${enchere.nomArticle}</td>
+                      <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
+                      <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
+                      <td>${enchere.utilisateur.pseudo}</td>
+                      <td></td>
   					</tr>
   				</c:forEach>
   			</c:if>
@@ -69,10 +69,10 @@
 	<script>
 		function detailFormatter(index, row) {
 			var html = []
-			html.push('<p><b><%= languages.getString("vendeur") %> : </b> ' + row.author + '</p>');
-			html.push('<p><b><%= languages.getString("date") %> : </b> ' + row.date + '</p>');
 			html.push('<p><b><%= languages.getString("article") %> : </b> ' + row.name + '</p>');
 			html.push('<p><b><%= languages.getString("prix") %> : </b> ' + row.price + '</p>');
+			html.push('<p><b><%= languages.getString("date") %> : </b> ' + row.date + '</p>');
+			html.push('<p><b><%= languages.getString("vendeur") %> : </b> ' + row.author + '</p>');			
 	    	return html.join('')
 		}
 		
