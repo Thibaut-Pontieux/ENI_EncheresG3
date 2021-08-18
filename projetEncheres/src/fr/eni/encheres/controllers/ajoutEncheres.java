@@ -57,6 +57,7 @@ public class ajoutEncheres extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String categorie = request.getParameter("catEnchere");
 		String nomArticle = request.getParameter("nomArticle");
 		String descArticle = request.getParameter("descriptionArticle");
 		int prixArticle = Integer.parseInt(request.getParameter("prixArticle"));
@@ -86,16 +87,12 @@ public class ajoutEncheres extends HttpServlet {
 			throw new RuntimeException("Le format de l'heure est incorrect");
 		}
 		
-		RequestDispatcher rd;
 		try {
-			enchereMgr.ajouterArticle(nomArticle, descArticle, prixArticle, dateDeb, dateFin, heureDeb, heureFin);
-			rd = request.getRequestDispatcher("/encheres");
+			enchereMgr.ajouterArticle(Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDeb, dateFin, heureDeb, heureFin);
+			response.sendRedirect(request.getContextPath() + "/encheres");
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
-			rd = request.getRequestDispatcher("/WEB-INF/ajoutEncheres.jsp");
-		}
-		
-		if(rd != null) {
+			RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/ajoutEncheres");
 			rd.forward(request, response);
 		}
 	}

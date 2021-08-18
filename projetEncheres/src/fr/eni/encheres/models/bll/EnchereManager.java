@@ -72,10 +72,10 @@ public class EnchereManager {
 		return listeC;
 	}
 	
-	public void ajouterArticle(String nomArt, String descArt, int prixArt, LocalDate dateDebVente, LocalDate dateFinVente, LocalTime heureDebVente, LocalTime heureFinVente) throws BLLException {
+	public void ajouterArticle(int numCat, String nomArt, String descArt, int prixArt, LocalDate dateDebVente, LocalDate dateFinVente, LocalTime heureDebVente, LocalTime heureFinVente) throws BLLException {
 		BLLException exceptions = new BLLException();
 		
-		Enchere enchere = new Enchere(1, 1, nomArt, descArt, prixArt, dateDebVente, dateFinVente);
+		Enchere enchere = new Enchere(1, numCat, nomArt, descArt, prixArt, dateDebVente, dateFinVente);
 		try {
 			enchereDAO.insertNouvelArticle(enchere);
 		} catch (DALException e) {
