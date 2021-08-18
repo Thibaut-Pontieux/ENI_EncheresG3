@@ -17,7 +17,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,0,false)";
+	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,0,0)";
 	
 	@Override
 	public List<Utilisateur> getListeUtilisateurs() throws DALException {
@@ -78,7 +78,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 				pstmt.setString(9, utilisateur.getMdp());
 				pstmt.executeUpdate();				
 			} catch (SQLException e) {
-				throw new DALException(languages.getString("addUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("ajoutUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
 			throw new DALException(languages.getString("noData"));

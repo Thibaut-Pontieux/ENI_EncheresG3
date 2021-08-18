@@ -138,6 +138,14 @@
             <Value disabled="false">test</Value>
             <Value disabled="false">test</Value>
         </Property>
+        <Property>
+            <Name>ajoutUtilisateurERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
+            <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
+            <Value disabled="false">Error : cannot add user</Value>
+        </Property>
         <Comment>
             <Value>encheres</Value>
         </Comment>

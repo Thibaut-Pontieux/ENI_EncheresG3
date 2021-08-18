@@ -8,7 +8,15 @@
     </head>
     <body>
 		<%@include file="/WEB-INF/layout/navbar.jspf" %>
-        <c:if test="${ !empty nom }"><p><c:out value="Bonjour, vous vous appelez ${ nom } ${ prenom } ${ pseudo } ${ email }" /></p></c:if>
+        <c:if test="${not empty requestScope.erreurs}">
+			<div>
+				<ul class="list-group">
+					<c:forEach var="erreur" items="${requestScope.erreurs}">
+						<li class="list-group-item d-flex list-group-item-danger">${erreur}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
         
         <form method="post" action="signInPage" class="container">
         
