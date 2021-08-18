@@ -1,9 +1,6 @@
 package fr.eni.encheres.controllers;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,34 +63,12 @@ public class ajoutEncheres extends HttpServlet {
 		String dateFinVente = request.getParameter("dateFinVente");
 		String heureFinVente = request.getParameter("heureFinVente");
 		
-		LocalDate dateDeb;
-		LocalDate dateFin;
-		LocalTime heureDeb;
-		LocalTime heureFin;
-		
 		try {
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			dateDeb = LocalDate.parse(dateDebVente, dtf);
-			dateFin = LocalDate.parse(dateFinVente, dtf);
-		} catch (RuntimeException e) {
-			throw new RuntimeException("Le format de la date est incorrect");
-		}
-		
-		try {
-			DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm");
-			heureDeb = LocalTime.parse(heureDebVente, tf);
-			heureFin = LocalTime.parse(heureFinVente, tf);
-		} catch (RuntimeException e) {
-			throw new RuntimeException("Le format de l'heure est incorrect");
-		}
-		
-		try {
-			enchereMgr.ajouterArticle(Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDeb, dateFin, heureDeb, heureFin);
+			enchereMgr.ajouterArticle(Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDebVente, dateFinVente, heureDebVente, heureFinVente);
 			response.sendRedirect(request.getContextPath() + "/encheres");
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
-			RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath() + "/ajoutEncheres");
-			rd.forward(request, response);
+			doGet(request, response);
 		}
 	}
 

@@ -238,6 +238,17 @@
             <Value disabled="false">Validate</Value>
         </Property>
         <Comment>
+            <Value>###ErreursAjoutEnchere###</Value>
+        </Comment>
+        <Property>
+            <Name>tailleNomArticle</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Le nom de l'article ne doit pas dépasser 30 caractères</Value>
+            <Value disabled="false">Le nom de l'article ne doit pas dépasser 30 caractères</Value>
+            <Value disabled="false">Name length should not exceed 30 letters</Value>
+        </Property>
+        <Comment>
             <Value>###Erreur###</Value>
         </Comment>
         <Property>

@@ -7,6 +7,15 @@
 	<div class="text-center">
 		<h1><%= languages.getString("ajouterE") %></h1>		
 	</div>
+	<c:if test="${not empty requestScope.erreurs}">
+		<div>
+			<ul class="list-group">
+				<c:forEach var="erreur" items="${requestScope.erreurs}">
+					<li class="list-group-item d-flex list-group-item-danger">${erreur}</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 	<form method="POST" action="${pageContext.request.contextPath}/ajoutEncheres">
   		<div class="form-group mb-3 w-25 mx-auto">
     		<label class="control-label" for="catEnchere"><%= languages.getString("categorie") %></label>
