@@ -48,6 +48,11 @@ public class Home extends HttpServlet {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
 		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("langue") == null) {
+			session.setAttribute("langue", "FRANCE");
+		}
+		
 		session.setAttribute("isConnected", false);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		if (rd != null) {
