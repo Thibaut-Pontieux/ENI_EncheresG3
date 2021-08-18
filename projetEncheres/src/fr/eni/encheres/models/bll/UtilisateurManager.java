@@ -28,7 +28,7 @@ public class UtilisateurManager {
 		 Pattern pattern = Pattern.compile(regex);
 		 Pattern phonepattern = Pattern.compile(phoneregex);
 		 Pattern postalcodepattern = Pattern.compile(postalcoderegex);
-		 
+		 /*
 		 if (pattern.matcher(email).matches() == false) {
 			 exceptions.ajoutErreur("Le format de l'email est incorrect");
 		 }
@@ -40,7 +40,7 @@ public class UtilisateurManager {
 		 if (postalcodepattern.matcher(codePostal).matches() == false) {
 			 exceptions.ajoutErreur("Le format du code postal est incorrect");
 		 }
-		 
+		*/ 
 		 if (exceptions.hasError()) throw exceptions;
 		
 		try {
