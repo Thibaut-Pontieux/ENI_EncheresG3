@@ -30,7 +30,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
-			+ "WHERE  c.libelle LIKE('%?%') AND  (a.nom_article LIKE('%?%') OR u.pseudo LIKE ('%?%'))" ;
+			+ "WHERE  c.libelle LIKE('%'+?+'%') AND  (a.nom_article LIKE('%'+?+'%') OR u.pseudo LIKE ('%'+?+'%'))" ;
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";

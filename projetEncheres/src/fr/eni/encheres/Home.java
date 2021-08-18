@@ -68,6 +68,7 @@ public class Home extends HttpServlet {
 			request.setAttribute("selectedEnchere", categorieEnchere);
 			listeC = enchereMgr.getCategories();
 			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("search", search);
 			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
 			if (categorieEnchere.equals("Tout"))
 				listeE = enchereMgr.getEncheres("",search);
