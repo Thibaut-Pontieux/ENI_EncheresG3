@@ -71,6 +71,14 @@
             <Value disabled="false">Déconnexion</Value>
             <Value disabled="false">Logout</Value>
         </Property>
+        <Property>
+            <Name>rechercher</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Rechercher</Value>
+            <Value disabled="false">Rechercher</Value>
+            <Value disabled="false">Search</Value>
+        </Property>
         <Comment>
             <Value>###Tableau###</Value>
         </Comment>

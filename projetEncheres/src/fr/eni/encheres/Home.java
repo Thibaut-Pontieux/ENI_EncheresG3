@@ -60,6 +60,7 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String categorieEnchere = request.getParameter("catEnchere");
+		String search			= request.getParameter("search");
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
@@ -67,12 +68,13 @@ public class Home extends HttpServlet {
 			request.setAttribute("selectedEnchere", categorieEnchere);
 			listeC = enchereMgr.getCategories();
 			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("search", search);
 			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
 			if (categorieEnchere.equals("Tout"))
-				listeE = enchereMgr.getEncheres();
+				listeE = enchereMgr.getEncheres("",search);
 			// Sinon on filtre suivant la catégorie sélectionnée
 			else
-				listeE = enchereMgr.getEncheres(categorieEnchere);
+				listeE = enchereMgr.getEncheres(categorieEnchere, search);
 			request.setAttribute("ListeEncheres", listeE);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
@@ -81,6 +83,8 @@ public class Home extends HttpServlet {
 		if (rd != null) {
 			rd.forward(request, response);
 		}
+		
+		
 	}
 
 }

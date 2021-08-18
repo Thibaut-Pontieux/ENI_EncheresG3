@@ -33,39 +33,36 @@
   						</c:forEach>
   					</c:if>
   				</select>
-  				<input type="submit" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>"> 
+  				<input class="form-control mr-sm-2" name="search" type="search" placeholder="<%= languages.getString("rechercher") %>" aria-label="Search" value="${requestScope.search}">
+  				<input type="submit" onclick="document.location.reload(false)" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>">
+  				<button id="refresh" class="btn" onclick="document.location.reload(false)"><i class="fa fa-sync"></i></button>
 			</div>
 		</form>
 	</div>
 	<table
   		id="table"
   		data-toolbar="#toolbar"
-  		data-search="true"
-  		data-show-refresh="true"
-  		data-show-columns="true"
   		data-show-columns-toggle-all="true"
   		data-detail-view="true"
- 		data-show-export="true"
- 	 	data-click-to-select="true"
   		data-detail-formatter="detailFormatter"
   		data-minimum-count-columns="2"
-  		data-show-pagination-switch="true"
-  		data-pagination="true"
   		data-id-field="id"
   		data-page-list="[10, 25, 50, 100, all]"
   		data-side-pagination="server"
   		data-response-handler="responseHandler">
   		<tbody>
-  			<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
-  				<tr>
-  					<td></td>
-  					<td>${enchere.nomArticle}</td>
-  					<td>${enchere.prixInitial} COIN</td>
-  					<td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
-  					<td>${enchere.utilisateur.pseudo}</td>
-  					<td></td>
-  				</tr>
-  			</c:forEach>
+  			<c:if test="${not empty requestScope.ListeEncheres}">
+  				<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
+  					<tr>	
+  						<td></td>
+  						<td>${enchere.nomArticle}</td>
+  						<td>${enchere.montant} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
+  						<td>${enchere.utilisateur.pseudo}</td>
+  						<td>${enchere.dateEnchere}</td>
+  						<td></td>
+  					</tr>
+  				</c:forEach>
+  			</c:if>
   		</tbody>
 	</table>
 	

@@ -14,6 +14,7 @@ function responseHandler(res) {
     })
     return res
 }
+
 function operateFormatter(value, row, index) {
 	return [
     	'<a class="like" href="javascript:void(0)" title="Like">',
