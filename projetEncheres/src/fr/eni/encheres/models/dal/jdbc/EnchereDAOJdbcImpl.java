@@ -33,6 +33,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
+	private static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
 	
 	@Override
 	public List<Enchere> getEncheres() throws DALException, SQLException {
@@ -205,5 +206,31 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			}
 		}
 		return listeE;
+	}
+
+	@Override
+	public void insertNouvelArticle(Enchere enchere) throws DALException, SQLException {
+		Connection cnx = null;
+		
+		if (enchere != null) {
+			try {
+				cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(INSERT_ARTICLE);
+				pstmt.setString(1,  enchere.getNomArticle());
+				pstmt.setString(2, enchere.getDescription());
+				pstmt.setDate(3, java.sql.Date.valueOf(enchere.getdDebEnchere().toString()));
+				pstmt.setDate(4, java.sql.Date.valueOf(enchere.getdFinEnchere().toString()));
+				pstmt.setInt(5, enchere.getPrixInitial());
+				pstmt.setInt(6, enchere.getIdUtilisateur());
+				pstmt.setInt(7, enchere.getIdCategorie());
+				pstmt.executeUpdate();	
+				cnx.close();
+			} catch (SQLException e) {
+				cnx.close();
+				throw new DALException(languages.getString("addEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+			}
+		} else {
+			throw new DALException(languages.getString("noData"));
+		}
 	}
 }

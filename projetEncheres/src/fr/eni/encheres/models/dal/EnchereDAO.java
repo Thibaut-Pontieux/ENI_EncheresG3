@@ -12,6 +12,7 @@ public interface EnchereDAO {
 	List<Enchere> getEncheres(String nomCat) throws DALException, SQLException;
 	List<Enchere> getUserEncheres(int idUser) throws DALException, SQLException;
 	List<Categorie> getCategories() throws DALException, SQLException;
+	void insertNouvelArticle(Enchere enchere) throws DALException, SQLException;
 	void insertEnchere(Enchere enchere) throws DALException, SQLException;
 	void updateEnchere(Enchere enchere) throws DALException, SQLException;
 }

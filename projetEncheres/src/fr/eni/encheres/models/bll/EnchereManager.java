@@ -1,6 +1,8 @@
 package fr.eni.encheres.models.bll;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,11 +72,12 @@ public class EnchereManager {
 		return listeC;
 	}
 	
-	public void ajouterEnchere(Enchere enchere) throws BLLException {
+	public void ajouterArticle(String nomArt, String descArt, int prixArt, LocalDate dateDebVente, LocalDate dateFinVente, LocalTime heureDebVente, LocalTime heureFinVente) throws BLLException {
 		BLLException exceptions = new BLLException();
 		
+		Enchere enchere = new Enchere(1, 1, nomArt, descArt, prixArt, dateDebVente, dateFinVente);
 		try {
-			enchereDAO.insertEnchere(enchere);
+			enchereDAO.insertNouvelArticle(enchere);
 		} catch (DALException e) {
 			exceptions.ajoutErreur(e.getMessage());
 			throw exceptions;
