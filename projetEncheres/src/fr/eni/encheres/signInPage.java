@@ -1,7 +1,6 @@
 package fr.eni.encheres;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,38 +59,8 @@ public class signInPage extends HttpServlet {
 		 } catch (BLLException e) {
 			 request.setAttribute("erreurs", e.getListeMessagesErreur());
 		 }
-		 String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-		 String phoneregex = "/^((\\+|00)33\\s?|0)[1-59](\\s?\\d{2}){4}$/";
-		 String postalcoderegex = "/^0[1-9]|[1-8][0-9]|9[0-8]|2A|2B[0-9]{3}$/";
-		 
-		 Pattern pattern = Pattern.compile(regex);
-		 Pattern phonepattern = Pattern.compile(phoneregex);
-		 Pattern postalcodepattern = Pattern.compile(postalcoderegex);
-		 
-		 if (pattern.matcher(email).matches() == false) {
-			 request.setAttribute("error", "format invalid");
-		 }
-		 
-		 if (phonepattern.matcher(phone).matches() == false) {
-			 request.setAttribute("errorphone", "format invalid");
-		 }
-		 
-		 if (postalcodepattern.matcher(postalcode).matches() == false) {
-			 request.setAttribute("errorpostalcode", "format invalid");
-		 }
-	
-	        
-        request.setAttribute("nom", nom);
-        request.setAttribute("prenom", prenom);
-        request.setAttribute("pseudo", pseudo);
-        request.setAttribute("email", email);
-        request.setAttribute("mdp", mdp);
-        request.setAttribute("phone", phone);
-        request.setAttribute("street", street);
-        request.setAttribute("postalcode", postalcode);
-        request.setAttribute("city", city);
-	        
-	        this.getServletContext().getRequestDispatcher("/WEB-INF/signInPage.jsp").forward(request, response);
+	       	        
+	    this.getServletContext().getRequestDispatcher("/WEB-INF/signInPage.jsp").forward(request, response);
 	}
 
 }
