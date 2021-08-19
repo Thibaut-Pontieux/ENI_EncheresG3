@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="/WEB-INF/layout/navbar.jspf"%>
 
 <head>
@@ -74,7 +75,7 @@
                       <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
                       <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
                       <td>${enchere.utilisateur.pseudo}</td>
-                      <td><button class="btn btn-primary"><span class="far fa-file-alt"> <%=languages.getString("plusInformations")%></span></button></td>
+                      <td><button class="btn btn-primary"><span class="fa fa-file-alt"></span> <%=languages.getString("plusInformations")%></button></td>
   					</tr>
   				</c:forEach>
   			</c:if>
