@@ -40,8 +40,16 @@
 					<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/encheres"><%= languages.getString("accueil") %></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mesEncheres"><%= languages.getString("mesEncheres") %></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					<c:if test="${sessionScope.isConnected==false}"><li class="nav-item px-4"><a class="btn btn-primary" href="${pageContext.request.contextPath}/connexion"><%= languages.getString("connexion") %></a></li></c:if>
-					<c:if test="${sessionScope.isConnected==true}"><li class="nav-item px-4"><button type="button" class="btn btn-danger"><%= languages.getString("deconnexion") %></button></li></c:if>
+										
+					<c:if test="${empty sessionScope.idUser}">
+        				<li class="nav-item px-4"><a class="btn btn-primary" href="${pageContext.request.contextPath}/connexion"><%= languages.getString("connexion") %></a></li>
+   					</c:if>
+   					
+   					<c:if test="${not empty sessionScope.idUser}">
+        				<li class="nav-item px-4"><a class="btn btn-danger" href="${pageContext.request.contextPath}/deconnexion"><%= languages.getString("deconnexion") %></a></li>
+   					</c:if>
+   					
+					
 				</ul>
 				<a href="${pageContext.request.contextPath}/anglais"><span class="us-lang active"><img src="https://web.poecdn.com/image/lang/GB.png" alt="English"></span></a>
 				<a href="${pageContext.request.contextPath}/france"><span class="fr-lang active"><img src="https://web.poecdn.com/image/lang/FR.png" alt="Français"></span></a>

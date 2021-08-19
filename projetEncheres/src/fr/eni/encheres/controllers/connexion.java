@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-
-import fr.eni.encheres.models.bll.EnchereManager;
 import fr.eni.encheres.models.bll.UtilisateurManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
 
@@ -40,8 +37,6 @@ public class connexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		session.setAttribute("session", "off");
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
@@ -58,13 +53,17 @@ public class connexion extends HttpServlet {
 		String password = request.getParameter("password");
 		try {
 			int ID = 0;
-			HttpSession session = request.getSession();
-			session.setAttribute("session", "on");
+			
 			
 			request.setAttribute("pseudo", username );
 			request.setAttribute("mdp", password);
 			
+			
 			ID = utilisateurMgr.getUtilisateur(username, password);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("idUser", ID);
+			
 			
 			if (ID != 0 ) {
 				response.sendRedirect(request.getContextPath() + "/encheres");
