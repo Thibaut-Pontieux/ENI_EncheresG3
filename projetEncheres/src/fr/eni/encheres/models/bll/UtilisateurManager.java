@@ -29,10 +29,10 @@ public class UtilisateurManager {
 		try {
 			ID = utilisateurDAO.utilisateurExiste(pseudo, mdp);
 		} catch (DALException e) {
-			exceptions.ajoutErreur(e.getMessage());
+			exceptions.ajoutErreur("Le pseudo/email ou le mot de passe est incorrect");
 			throw exceptions;
 		} catch (SQLException e) {
-			exceptions.ajoutErreur(e.getMessage());
+			exceptions.ajoutErreur("Le pseudo/email ou le mot de passe est incorrect");
 			throw exceptions;
 		}
 		return ID;
@@ -53,6 +53,12 @@ public class UtilisateurManager {
 		}
 		
 		return utilisateur;
+	}
+	
+	public  void profilUtilisateur(int  idUser) throws BLLException, DALException, SQLException {
+		
+		utilisateurDAO.getUtilisateur(idUser);
+
 	}
 	
 	public void ajouterUtilisateur(String nom, String prenom, String pseudo, String email, String mdp, String telephone,
