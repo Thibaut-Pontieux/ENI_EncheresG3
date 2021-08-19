@@ -12,18 +12,26 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 
+import fr.eni.encheres.models.bll.EnchereManager;
+import fr.eni.encheres.models.bll.UtilisateurManager;
+import fr.eni.encheres.models.bll.exceptions.BLLException;
+
+
 /**
  * Servlet implementation class connexion
  */
 @WebServlet("/connexion")
 public class connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private UtilisateurManager utilisateurMgr;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public connexion() {
         super();
+        this.utilisateurMgr = new UtilisateurManager();
         // TODO Auto-generated constructor stub
     }
 
@@ -49,23 +57,33 @@ public class connexion extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		try {
+			int ID = 0;
 			HttpSession session = request.getSession();
 			session.setAttribute("session", "on");
 			
 			request.setAttribute("pseudo", username );
 			request.setAttribute("mdp", password);
 			
+			ID = utilisateurMgr.getUtilisateur(username, password);
+			
+			if (ID != 0 ) {
+				response.sendRedirect(request.getContextPath() + "/home");
+
+			}else {
+				response.sendRedirect(request.getContextPath() + "/connexion");
+
+			}
+			
 			
 			
 		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+			
+			response.sendRedirect(request.getContextPath() + "/connexion");
 			
 		}
-		
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
-		if (rd != null) {
-			rd.forward(request, response);
-		}
+	
 	}
 
 }

@@ -1,6 +1,8 @@
 package fr.eni.encheres.models.bll;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.eni.encheres.models.bll.exceptions.BLLException;
@@ -15,6 +17,23 @@ public class UtilisateurManager {
 
 	public UtilisateurManager() {
 		utilisateurDAO = new UtilisateurDAOJdbcImpl();
+	}
+	
+	public int getUtilisateur(String pseudo, String mdp) throws BLLException {
+		BLLException exceptions = new BLLException();
+		
+		int ID = 0 ;
+		
+		try {
+			ID = utilisateurDAO.utilisateurExiste(pseudo, mdp);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		return ID;
 	}
 	
 	public void ajouterUtilisateur(String nom, String prenom, String pseudo, String email, String mdp, String telephone,

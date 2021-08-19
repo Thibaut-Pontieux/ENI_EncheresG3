@@ -17,7 +17,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String SELECT_VERIF_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ? AND mot_de_passe = ?";
+	private static final String SELECT_VERIF_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,0,0)";
 	
 	@Override
@@ -60,18 +60,22 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 		Connection cnx = null;
 		int ID = 0;
 		try {
+			cnx = ConnectionProvider.getConnection();
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_VERIF_UTILISATEUR);
 			pstmt.setString(1, pseudo);
 			pstmt.setString(2, pseudo);
 			pstmt.setString(3, mdp);
+			pstmt.executeQuery();
 			ResultSet rs = pstmt.getResultSet();
-		
-			ID = rs.getInt("no_utilisateur");
+			while(rs.next()) {
+				ID = rs.getInt("no_utilisateur");
+			}
+			
 			
 			cnx.close();
 		} catch (SQLException e) {
 			cnx.close();
-			throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+			throw new DALException(languages.getString("getUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		
 		return ID;

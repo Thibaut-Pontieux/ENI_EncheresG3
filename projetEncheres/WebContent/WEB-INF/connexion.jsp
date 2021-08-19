@@ -11,6 +11,16 @@
 		}
 	</style>
 	
+	
+	<c:if test="${not empty requestScope.erreurs}">
+		<div>
+			<ul class="list-group">
+				<c:forEach var="erreur" items="${requestScope.erreurs}">
+					<li class="list-group-item d-flex list-group-item-danger">${erreur}</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 	<div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -27,7 +37,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
+								<form id="login-form" action="${pageContext.request.contextPath }/connexion" method="post" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 										<br>
@@ -44,7 +54,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+								<form id="register-form" action="${pageContext.request.contextPath }/connexion" method="post" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 										<br>
