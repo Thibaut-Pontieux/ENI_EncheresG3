@@ -7,10 +7,6 @@
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		
 		url="jdbc:sqlserver://localhost:1433;databasename=BDD_ENCHERES"
-<<<<<<< Updated upstream
-		username="sa"
-		password="Pa$$w0rd"
-=======
 		username="su"
 		password="su"
 >>>>>>> Stashed changes
