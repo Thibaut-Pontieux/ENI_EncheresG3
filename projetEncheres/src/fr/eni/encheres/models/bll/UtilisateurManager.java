@@ -1,8 +1,6 @@
 package fr.eni.encheres.models.bll;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.eni.encheres.models.bll.exceptions.BLLException;
