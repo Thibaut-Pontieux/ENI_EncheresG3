@@ -41,7 +41,6 @@
   				</select>
   				<input class="form-control mr-sm-2" name="search" type="search" placeholder="<%= languages.getString("rechercher") %>" aria-label="Search" value="${requestScope.search}">
   				<input type="submit" onclick="document.location.reload(false)" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>">
-  				<button id="refresh" class="btn" onclick="document.location.reload(false)"><i class="fa fa-sync"></i></button>
 			</div>
 		</form>
 	<table
