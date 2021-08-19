@@ -153,6 +153,135 @@
             <Value disabled="false">All categories</Value>
         </Property>
         <Comment>
+            <Value>###AjoutEnchere###</Value>
+        </Comment>
+        <Property>
+            <Name>ajouterE</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Nouvelle enchère</Value>
+            <Value disabled="false">Nouvelle enchère</Value>
+            <Value disabled="false">New auction</Value>
+        </Property>
+        <Property>
+            <Name>categorie</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Catégorie</Value>
+            <Value disabled="false">Catégorie</Value>
+            <Value disabled="false">Categorie</Value>
+        </Property>
+        <Property>
+            <Name>articlePH</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Nom de l'article</Value>
+            <Value disabled="false">Nom de l'article</Value>
+            <Value disabled="false">Article name</Value>
+        </Property>
+        <Property>
+            <Name>descArticle</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Description</Value>
+            <Value disabled="false">Description</Value>
+            <Value disabled="false">Description</Value>
+        </Property>
+        <Property>
+            <Name>descArticlePH</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Description de l'article...</Value>
+            <Value disabled="false">Description de l'article...</Value>
+            <Value disabled="false">Article description...</Value>
+        </Property>
+        <Property>
+            <Name>prixArticle</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Prix</Value>
+            <Value disabled="false">Prix</Value>
+            <Value disabled="false">Price</Value>
+        </Property>
+        <Property>
+            <Name>dateDebVente</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Date de début</Value>
+            <Value disabled="false">Date de début</Value>
+            <Value disabled="false">Start date</Value>
+        </Property>
+        <Property>
+            <Name>heureDebVente</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Heure de début</Value>
+            <Value disabled="false">Heure de début</Value>
+            <Value disabled="false">Start time</Value>
+        </Property>
+        <Property>
+            <Name>dateFinVente</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Date de fin</Value>
+            <Value disabled="false">Date de fin</Value>
+            <Value disabled="false">End date</Value>
+        </Property>
+        <Property>
+            <Name>heureFinVente</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Heure de fin</Value>
+            <Value disabled="false">Heure de fin</Value>
+            <Value disabled="false">End time</Value>
+        </Property>
+        <Property>
+            <Name>adresseRetrait</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Lieu de retrait de l'article</Value>
+            <Value disabled="false">Lieu de retrait de l'article</Value>
+            <Value disabled="false">Pick-up location</Value>
+        </Property>
+        <Property>
+            <Name>validerNvEnchere</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Valider</Value>
+            <Value disabled="false">Valider</Value>
+            <Value disabled="false">Validate</Value>
+        </Property>
+        <Comment>
+            <Value>###ErreursAjoutEnchere###</Value>
+        </Comment>
+        <Property>
+            <Name>tailleNomArticle</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Le nom de l'article ne doit pas dépasser 30 caractères</Value>
+            <Value disabled="false">Le nom de l'article ne doit pas dépasser 30 caractères</Value>
+            <Value disabled="false">Name length should not exceed 30 letters</Value>
+        </Property>
+        <Comment>
+            <Value>###MesEncheres###</Value>
+        </Comment>
+        <Property>
+            <Name>mesEncheres</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Mes enchères</Value>
+            <Value disabled="false">Mes enchères</Value>
+            <Value disabled="false">My auctions</Value>
+        </Property>
+        <Property>
+            <Name>detail</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Détails</Value>
+            <Value disabled="false">Détails</Value>
+            <Value disabled="false">More details</Value>
+        </Property>
+        <Comment>
             <Value>###Erreur###</Value>
         </Comment>
         <Property>

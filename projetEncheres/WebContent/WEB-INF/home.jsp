@@ -54,25 +54,31 @@
 			</div>
 		</form>
 	</div>
-	<table id="table" data-toolbar="#toolbar"
-		data-show-columns-toggle-all="true" data-detail-view="true"
-		data-detail-formatter="detailFormatter" data-minimum-count-columns="2"
-		data-id-field="id" data-page-list="[10, 25, 50, 100, all]"
-		data-side-pagination="server" data-response-handler="responseHandler">
-		<tbody>
-			<c:if test="${not empty requestScope.ListeEncheres}">
-				<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
-					<tr>
-						<td></td>
-						<td>${enchere.nomArticle}</td>
-						<td>${enchere.montant} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
-						<td>${enchere.dateEnchere}</td>
-						<td>${enchere.utilisateur.pseudo}</td>
-						<td><button class="btn btn-primary"><span class="far fa-file-alt"> <%=languages.getString("plusInformations")%></span></button></td>
-					</tr>
-				</c:forEach>
-			</c:if>
-		</tbody>
+	<table
+  		id="table"
+  		data-toolbar="#toolbar"
+  		data-show-columns-toggle-all="true"
+  		data-detail-view="true"
+  		data-detail-formatter="detailFormatter"
+  		data-minimum-count-columns="2"
+  		data-id-field="id"
+  		data-page-list="[10, 25, 50, 100, all]"
+  		data-side-pagination="server"
+  		data-response-handler="responseHandler">
+  		<tbody>
+  			<c:if test="${not empty requestScope.ListeEncheres}">
+  				<c:forEach var="enchere" items="${requestScope.ListeEncheres }">
+  					<tr>	
+  					  <td></td>
+                      <td>${enchere.nomArticle}</td>
+                      <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
+                      <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
+                      <td>${enchere.utilisateur.pseudo}</td>
+                      <td><button class="btn btn-primary"><span class="far fa-file-alt"> <%=languages.getString("plusInformations")%></span></button></td>
+  					</tr>
+  				</c:forEach>
+  			</c:if>
+  		</tbody>
 	</table>
 
 	<script>

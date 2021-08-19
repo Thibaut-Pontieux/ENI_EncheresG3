@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.models.bll.EnchereManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
@@ -18,43 +17,37 @@ import fr.eni.encheres.models.bo.Categorie;
 import fr.eni.encheres.models.bo.Enchere;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class mesEncheres
  */
-@WebServlet("/encheres")
-public class Home extends HttpServlet {
+@WebServlet("/mesEncheres")
+public class mesEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private EnchereManager enchereMgr;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public mesEncheres() {
         super();
-        this.enchereMgr = new EnchereManager();
-    }
+        this.enchereMgr = new EnchereManager();    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Categorie> listeC = new ArrayList<Categorie>();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		List<Enchere>   listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
 		try {
+			listeE = enchereMgr.getMesEncheres(1);
 			listeC = enchereMgr.getCategories();
-			listeE = enchereMgr.getEncheres();
-			request.setAttribute("categoriesEncheres", listeC);
 			request.setAttribute("ListeEncheres", listeE);
+			request.setAttribute("categoriesEncheres", listeC);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("langue") == null) {
-			session.setAttribute("langue", "FRANCE");
-		}
-		
-		session.setAttribute("isConnected", false);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mesEncheres.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
 		}
@@ -77,16 +70,15 @@ public class Home extends HttpServlet {
 			request.setAttribute("search", search);
 			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
 			if (categorieEnchere.equals("Tout"))
-				listeE = enchereMgr.getEncheres("",search);
+				listeE = enchereMgr.getEncheres(1, "",search);
 			// Sinon on filtre suivant la catégorie sélectionnée
 			else
-				listeE = enchereMgr.getEncheres(categorieEnchere, search);
+				listeE = enchereMgr.getEncheres(1, categorieEnchere, search);
 			request.setAttribute("ListeEncheres", listeE);
-
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mesEncheres.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
 		}

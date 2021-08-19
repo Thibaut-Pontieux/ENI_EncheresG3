@@ -10,25 +10,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.models.bll.EnchereManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
 import fr.eni.encheres.models.bo.Categorie;
-import fr.eni.encheres.models.bo.Enchere;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class ajoutEnchreres
  */
-@WebServlet("/encheres")
-public class Home extends HttpServlet {
+@WebServlet("/ajoutEncheres")
+public class ajoutEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private EnchereManager enchereMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public ajoutEncheres() {
         super();
         this.enchereMgr = new EnchereManager();
     }
@@ -37,24 +35,15 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<Categorie> listeC = new ArrayList<Categorie>();
-		List<Enchere>   listeE = new ArrayList<Enchere>();
 		try {
 			listeC = enchereMgr.getCategories();
-			listeE = enchereMgr.getEncheres();
 			request.setAttribute("categoriesEncheres", listeC);
-			request.setAttribute("ListeEncheres", listeE);
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("langue") == null) {
-			session.setAttribute("langue", "FRANCE");
-		}
-		
-		session.setAttribute("isConnected", false);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ajoutEncheres.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
 		}
@@ -65,30 +54,21 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String categorieEnchere = request.getParameter("catEnchere");
-		String search			= request.getParameter("search");
-		List<Enchere> listeE = new ArrayList<Enchere>();
-		List<Categorie> listeC = new ArrayList<Categorie>();
+		String categorie = request.getParameter("catEnchere");
+		String nomArticle = request.getParameter("nomArticle");
+		String descArticle = request.getParameter("descriptionArticle");
+		int prixArticle = Integer.parseInt(request.getParameter("prixArticle"));
+		String dateDebVente = request.getParameter("dateDebVente");
+		String heureDebVente = request.getParameter("heureDebVente");
+		String dateFinVente = request.getParameter("dateFinVente");
+		String heureFinVente = request.getParameter("heureFinVente");
+		
 		try {
-			// Création d'attributs contenant les catégories d'enchères et la catégorie sélectionnée par l'utilisateur
-			request.setAttribute("selectedEnchere", categorieEnchere);
-			listeC = enchereMgr.getCategories();
-			request.setAttribute("categoriesEncheres", listeC);
-			request.setAttribute("search", search);
-			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
-			if (categorieEnchere.equals("Tout"))
-				listeE = enchereMgr.getEncheres("",search);
-			// Sinon on filtre suivant la catégorie sélectionnée
-			else
-				listeE = enchereMgr.getEncheres(categorieEnchere, search);
-			request.setAttribute("ListeEncheres", listeE);
-
+			enchereMgr.ajouterArticle(Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDebVente, dateFinVente, heureDebVente, heureFinVente);
+			response.sendRedirect(request.getContextPath() + "/encheres");
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
-		if (rd != null) {
-			rd.forward(request, response);
+			doGet(request, response);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package fr.eni.encheres.models.bo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Enchere {
@@ -15,10 +16,28 @@ public class Enchere {
 	private int prixInitial;
 	private int prixFinal;
 	private Utilisateur utilisateur;
+	private LocalDate dDebEnchere;
+	private LocalDate dFinEnchere;
 
 	public Enchere() {
 		super();
 	}
+	
+	
+	
+	public Enchere(int idUtilisateur, int idCategorie, String nomArticle, String description, int prixInitial, LocalDate dateDebutEnchere,
+			LocalDate dateFinEnchere) {
+		super();
+		this.idUtilisateur = idUtilisateur;
+		this.idCategorie = idCategorie;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.prixInitial = prixInitial;
+		this.dDebEnchere = dateDebutEnchere;
+		this.dFinEnchere = dateFinEnchere;
+	}
+
+
 
 	public Enchere(int idUtilisateur, int idArticle, Date dateEnchere, int montant) {
 		super();
@@ -150,6 +169,30 @@ public class Enchere {
 
 	public void setDateEnchere(Date dateEnchere) {
 		this.dateEnchere = dateEnchere;
+	}
+
+
+
+	public LocalDate getdDebEnchere() {
+		return dDebEnchere;
+	}
+
+
+
+	public void setdDebEnchere(LocalDate dDebEnchere) {
+		this.dDebEnchere = dDebEnchere;
+	}
+
+
+
+	public LocalDate getdFinEnchere() {
+		return dFinEnchere;
+	}
+
+
+
+	public void setdFinEnchere(LocalDate dFinEnchere) {
+		this.dFinEnchere = dFinEnchere;
 	}
 
 	
