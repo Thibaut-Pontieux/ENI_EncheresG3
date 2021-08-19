@@ -41,11 +41,11 @@
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mesEncheres"><%= languages.getString("mesEncheres") %></a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 										
-					<c:if test="${ sessionScope.id == 0 }">
+					<c:if test="${empty sessionScope.idUser}">
         				<li class="nav-item px-4"><a class="btn btn-primary" href="${pageContext.request.contextPath}/connexion"><%= languages.getString("connexion") %></a></li>
    					</c:if>
    					
-   					<c:if test="${ sessionScope.id != 0 }">
+   					<c:if test="${not empty sessionScope.idUser}">
         				<li class="nav-item px-4"><a class="btn btn-danger" href="${pageContext.request.contextPath}/deconnexion"><%= languages.getString("deconnexion") %></a></li>
    					</c:if>
    					
