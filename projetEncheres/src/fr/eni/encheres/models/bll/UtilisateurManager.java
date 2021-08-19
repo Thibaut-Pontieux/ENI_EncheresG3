@@ -55,7 +55,7 @@ public class UtilisateurManager {
 		return utilisateur;
 	}
 	
-	public  void profilUtilisateur(int  idUser) throws BLLException, DALException {
+	public  void profilUtilisateur(int  idUser) throws BLLException, DALException, SQLException {
 		
 		utilisateurDAO.getUtilisateur(idUser);
 

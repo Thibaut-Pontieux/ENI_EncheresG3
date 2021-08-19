@@ -1,6 +1,7 @@
 package fr.eni.encheres.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -67,6 +68,9 @@ public class profil extends HttpServlet {
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

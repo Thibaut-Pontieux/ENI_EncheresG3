@@ -40,7 +40,7 @@
   					</c:if>
   				</select>
   				<input class="form-control mr-sm-2" name="search" type="search" placeholder="<%= languages.getString("rechercher") %>" aria-label="Search" value="${requestScope.search}">
-  				<input type="submit" onclick="document.location.reload(false)" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>">
+  				<input type="submit" onclick="document.location.reload(false)" name="chercher" class="btn btn-primary btn-lg" value="<%= languages.getString("chercher") %>">
 			</div>
 		</form>
 	<div class="w-25 mt-3">
@@ -61,7 +61,7 @@
                       <td>${enchere.nomArticle}</td>
                       <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
                       <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
-                      <td><a class="btn btn-primary" role="button"><%= languages.getString("detail") %></a></td>
+                      <td><a href="${pageContext.request.contextPath}/DancingKid" class="btn btn-primary" role="button"><%= languages.getString("detail") %></a></td>
   					</tr>
   				</c:forEach>
   			</c:if>
