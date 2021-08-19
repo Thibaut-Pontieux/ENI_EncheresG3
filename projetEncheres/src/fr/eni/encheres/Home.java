@@ -59,8 +59,32 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String categorieEnchere = request.getParameter("catEnchere");
+		String search			= request.getParameter("search");
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
+		try {
+			// Création d'attributs contenant les catégories d'enchères et la catégorie sélectionnée par l'utilisateur
+			request.setAttribute("selectedEnchere", categorieEnchere);
+			listeC = enchereMgr.getCategories();
+			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("search", search);
+			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
+			if (categorieEnchere.equals("Tout"))
+				listeE = enchereMgr.getEncheres("",search);
+			// Sinon on filtre suivant la catégorie sélectionnée
+			else
+				listeE = enchereMgr.getEncheres(categorieEnchere, search);
+			request.setAttribute("ListeEncheres", listeE);
+		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
+		if (rd != null) {
+			rd.forward(request, response);
+		}
+		
+		
 	}
 
 }
