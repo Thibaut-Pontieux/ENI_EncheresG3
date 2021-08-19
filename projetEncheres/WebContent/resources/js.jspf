@@ -6,5 +6,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.18.3/locale/bootstrap-table-fr-FR.min.js"></script>
 <script src="https://use.fontawesome.com/f029bcd4fe.js"></script>
 
-<script src="resources/connexion.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

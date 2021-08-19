@@ -2,11 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="/WEB-INF/layout/navbar.jspf"%>
 <body>
+	<link href="resources/connexion.css">
+	
 	<style>
 		.container {
     		position: absolute;
     		left: 30%;
-    		top: 30%;
+    		top: 15%;
     		transfrom: translate(-50%,-50%);
 		}
 	</style>
@@ -54,21 +56,44 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="${pageContext.request.contextPath }/connexion" method="post" role="form" style="display: none;">
+								<form id="register-form" action="${pageContext.request.contextPath }/signInPage" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+										<input type="text" maxlength="30" class="form-control" name="nom" id="nom" placeholder="nom" required/>
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+										<input type="text" maxlength="30" class="form-control" name="prenom" id="prenom" placeholder="prénom" required/>
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="text" maxlength="30" class="form-control" name="pseudo" id="pseudo" placeholder="psseudo" required/>
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+										<input type="email" maxlength="50" class="form-control" name="email" id="email" placeholder="Email" required/>
+            							<c:if test="${!empty requestScope.error}"><p>Erreur</p></c:if>
+										<br>
+									</div>
+									<div class="form-group">
+										<input type="password" maxlength="30" class="form-control" name="mdp" id="mdp" placeholder="Mot de passe" required/>
+										<br>
+									</div>
+									<div class="form-group">
+										<input type="tel" maxlength="15" class="form-control" name="phone" id="phone" placeholder="Téléphone" required/>
+           								<c:if test="${!empty requestScope.errorphone}"><p>Wrong Number</p></c:if>
+										<br>
+									</div>
+									<div class="form-group">
+										<input type="text" maxlength="30" class="form-control" name="street" id="street" placeholder="adresse" required/>
+										<br>
+									</div>
+									<div class="form-group">
+										<input type="text" maxlength="10" class="form-control" name="postalcode" id="postalcode" placeholder="Code postal" required/>
+            							<c:if test="${!empty requestScope.errorpostalcode}"><p>Format Invalid</p></c:if>
+										<br>
+									</div>
+									<div class="form-group">
+										<input type="text" maxlength="30" class="form-control" name="city" id="city" placeholder="Ville" required/>
 										<br>
 									</div>
 									<div class="form-group">
@@ -86,5 +111,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<script src="resources/connexion.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	
 </body>

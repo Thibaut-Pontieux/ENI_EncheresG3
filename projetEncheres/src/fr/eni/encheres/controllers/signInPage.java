@@ -1,4 +1,4 @@
-package fr.eni.encheres;
+package fr.eni.encheres.controllers;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class signInPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/signInPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
 		}
@@ -60,7 +60,7 @@ public class signInPage extends HttpServlet {
 			 request.setAttribute("erreurs", e.getListeMessagesErreur());
 		 }
 	       	        
-	    this.getServletContext().getRequestDispatcher("/WEB-INF/signInPage.jsp").forward(request, response);
+	    this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
 	}
 
 }

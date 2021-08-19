@@ -67,7 +67,7 @@ public class connexion extends HttpServlet {
 			ID = utilisateurMgr.getUtilisateur(username, password);
 			
 			if (ID != 0 ) {
-				response.sendRedirect(request.getContextPath() + "/home");
+				response.sendRedirect(request.getContextPath() + "/encheres");
 
 			}else {
 				response.sendRedirect(request.getContextPath() + "/connexion");
