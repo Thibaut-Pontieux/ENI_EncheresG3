@@ -14,10 +14,11 @@ import fr.eni.encheres.models.bo.Enchere;
 import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.EnchereDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
+import fr.eni.languages.DefaultLanguage;
 
 public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 
-	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
 	
 	private static final String SELECT_ENCHERES = "SELECT * FROM ARTICLES_VENDUS a "
 			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur";
@@ -33,9 +34,8 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 			+ "WHERE a.no_utilisateur = ? AND c.libelle LIKE('%'+?+'%') AND  (a.nom_article LIKE('%'+?+'%') OR u.pseudo LIKE ('%'+?+'%'))" ;
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
-	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
-	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
-	private static final String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
+	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
+	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
 	
 	@Override
 	public List<Enchere> getEncheres() throws DALException, SQLException {
@@ -123,7 +123,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				cnx.close();
 			} catch (SQLException e) {
 				cnx.close();
-				throw new DALException(languages.getString("addEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("ajoutEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
 			throw new DALException(languages.getString("noData"));
@@ -232,7 +232,7 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				cnx.close();
 			} catch (SQLException e) {
 				cnx.close();
-				throw new DALException(languages.getString("addEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+				throw new DALException(languages.getString("ajoutEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 			}
 		} else {
 			throw new DALException(languages.getString("noData"));

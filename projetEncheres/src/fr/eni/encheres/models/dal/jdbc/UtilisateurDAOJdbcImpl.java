@@ -11,10 +11,11 @@ import java.util.ResourceBundle;
 import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.UtilisateurDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
+import fr.eni.languages.DefaultLanguage;
 
 public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO {
 
-	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_VERIF_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?";

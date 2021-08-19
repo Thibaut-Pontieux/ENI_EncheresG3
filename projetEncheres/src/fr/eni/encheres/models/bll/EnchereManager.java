@@ -14,12 +14,13 @@ import fr.eni.encheres.models.bo.Enchere;
 import fr.eni.encheres.models.dal.EnchereDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
 import fr.eni.encheres.models.dal.jdbc.EnchereDAOJdbcImpl;
+import fr.eni.languages.DefaultLanguage;
 
 public class EnchereManager {
 
 	private EnchereDAO enchereDAO;
 	
-	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
 	
 	public EnchereManager() {
 		enchereDAO = new EnchereDAOJdbcImpl();
@@ -27,7 +28,6 @@ public class EnchereManager {
 	
 	public List<Enchere> getEncheres() throws BLLException {
 		BLLException exceptions = new BLLException();
-		
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		
 		try {
