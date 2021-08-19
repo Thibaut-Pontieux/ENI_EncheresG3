@@ -109,7 +109,6 @@
 		        		rowspan: 2,
 		        		align: 'center',
 		        		valign: 'middle',
-		        		sortable: true,
 		        		footerFormatter: totalTextFormatter
 		        	 },
 					  {
@@ -121,14 +120,12 @@
 				 	{
 		        		field: 'price',
 		        	  	title: '<%=languages.getString("prix")%>',
-		          		sortable: true,
 		         		align: 'center',
 		          		footerFormatter: totalPriceFormatter
 		         	},
 					{
 		        		field: 'date',
 		        	  	title: '<%=languages.getString("date")%>',
-		          		sortable: true,
 		         		align: 'center',
 		          		footerFormatter: totalPriceFormatter
 		         	},
@@ -141,9 +138,9 @@
 					{
 						field: 'operate',
 		          		title: '<%=languages.getString("actions")%>',
-					align : 'center',
-					clickToSelect : false
-				} ] ],
+						align : 'center',
+						clickToSelect : false
+					}]],
 			})
 			$table.on('check.bs.table uncheck.bs.table '
 					+ 'check-all.bs.table uncheck-all.bs.table', function() {

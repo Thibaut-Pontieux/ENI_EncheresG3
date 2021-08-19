@@ -9,7 +9,7 @@ import fr.eni.encheres.models.dal.exception.DALException;
 public interface UtilisateurDAO {
 
 	List<Utilisateur> getListeUtilisateurs() throws DALException;
-	Utilisateur getUtilisateur(int idUtilisateur) throws DALException;
+	Utilisateur getUtilisateur(int idUtilisateur) throws DALException, SQLException;
 	int utilisateurExiste(String pseudo, String mdp) throws DALException,SQLException;
 	void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException;
 	void updateUtilisateur(Utilisateur utilisateur) throws DALException, SQLException;

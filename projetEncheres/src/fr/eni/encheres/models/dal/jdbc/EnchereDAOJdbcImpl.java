@@ -88,12 +88,18 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 					enchere = new Enchere();
 					enchere.setIdArticle(rs.getInt("no_article"));
 					enchere.setIdCategorie(rs.getInt("no_categorie"));
+					enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
 					enchere.setNomArticle(rs.getString("nom_article"));
 					enchere.setDescription(rs.getString("description"));
 					enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
 					enchere.setDateFinEnchere(rs.getDate("date_fin_encheres"));
 					enchere.setPrixInitial(rs.getInt("prix_initial"));
 					enchere.setPrixFinal(rs.getInt("prix_vente"));
+					Utilisateur u = new Utilisateur();
+					u.setRue(rs.getString("rue"));
+					u.setVille(rs.getString("ville"));
+					u.setCode_postal(rs.getString("code_postal"));
+					enchere.setUtilisateur(u);
 					listeE.add(enchere);
 				}
 				cnx.close();

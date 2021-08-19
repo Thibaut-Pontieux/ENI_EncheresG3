@@ -38,6 +38,23 @@ public class UtilisateurManager {
 		return ID;
 	}
 	
+	public Utilisateur getUtilisateur(int idUtilisateur) throws BLLException {
+		BLLException exceptions = new BLLException();
+		Utilisateur utilisateur = new Utilisateur();
+		
+		try {
+			utilisateur = utilisateurDAO.getUtilisateur(idUtilisateur);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		
+		return utilisateur;
+	}
+	
 	public void ajouterUtilisateur(String nom, String prenom, String pseudo, String email, String mdp, String telephone,
 			String rue, String codePostal, String ville) throws BLLException {
 		BLLException exceptions = new BLLException();

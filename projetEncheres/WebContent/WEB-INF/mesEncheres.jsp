@@ -44,6 +44,9 @@
   				<button id="refresh" class="btn" onclick="document.location.reload(false)"><i class="fa fa-sync"></i></button>
 			</div>
 		</form>
+	<div class="w-25 mt-3">
+		<a href="${pageContext.request.contextPath}/ajoutEncheres" class="btn btn-primary" role="button"><%= languages.getString("ajouterE") %></a>
+	</div>
 	<table
   		id="table"
   		data-toolbar="#toolbar"
@@ -65,9 +68,7 @@
   			</c:if>
   		</tbody>
 	</table>
-	<div class="w-25 mt-3">
-		<a href="${pageContext.request.contextPath}/ajoutEncheres" class="btn btn-primary" role="button"><%= languages.getString("ajouterE") %></a>
-	</div>
+
 	<script>
 		function detailFormatter(index, row) {
 			var html = []

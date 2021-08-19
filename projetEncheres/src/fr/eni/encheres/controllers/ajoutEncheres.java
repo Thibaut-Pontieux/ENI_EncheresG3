@@ -10,10 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.models.bll.EnchereManager;
+import fr.eni.encheres.models.bll.UtilisateurManager;
 import fr.eni.encheres.models.bll.exceptions.BLLException;
 import fr.eni.encheres.models.bo.Categorie;
+import fr.eni.encheres.models.bo.Utilisateur;
 
 /**
  * Servlet implementation class ajoutEnchreres
@@ -23,12 +26,14 @@ public class ajoutEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private EnchereManager enchereMgr;
+	private UtilisateurManager utilisateurMgr;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ajoutEncheres() {
         super();
         this.enchereMgr = new EnchereManager();
+        this.utilisateurMgr = new UtilisateurManager();
     }
 
 	/**
@@ -37,9 +42,15 @@ public class ajoutEncheres extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		List<Categorie> listeC = new ArrayList<Categorie>();
+		HttpSession session = request.getSession();
+		
 		try {
 			listeC = enchereMgr.getCategories();
 			request.setAttribute("categoriesEncheres", listeC);
+			if (session.getAttribute("idUser") != null) {
+				Utilisateur u = utilisateurMgr.getUtilisateur((Integer) session.getAttribute("idUser"));
+				request.setAttribute("infosUtilisateur", u);
+			}
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
@@ -62,10 +73,11 @@ public class ajoutEncheres extends HttpServlet {
 		String heureDebVente = request.getParameter("heureDebVente");
 		String dateFinVente = request.getParameter("dateFinVente");
 		String heureFinVente = request.getParameter("heureFinVente");
+		HttpSession session = request.getSession();
 		
 		try {
-			enchereMgr.ajouterArticle(Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDebVente, dateFinVente, heureDebVente, heureFinVente);
-			response.sendRedirect(request.getContextPath() + "/encheres");
+			enchereMgr.ajouterArticle((Integer) session.getAttribute("idUser"), Integer.parseInt(categorie),nomArticle, descArticle, prixArticle, dateDebVente, dateFinVente, heureDebVente, heureFinVente);
+			response.sendRedirect(request.getContextPath() + "/mesEncheres");
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 			doGet(request, response);
