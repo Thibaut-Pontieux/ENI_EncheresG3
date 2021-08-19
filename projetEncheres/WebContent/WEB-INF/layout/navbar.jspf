@@ -49,6 +49,7 @@
 		</div>
 	</nav>	
 </header>
+<div class="position-absolute bottom-0 end-0"><img src="resources/dgenough.png" width="20%" height="20%"></div>
 <style>
 	.fa-globe {
   		color: white;
