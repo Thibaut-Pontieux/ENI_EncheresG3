@@ -49,9 +49,6 @@
 						name="chercher" class="btn btn-primary btn-lg"
 						value="<%=languages.getString("chercher")%>">
 						
-				<button id="refresh" class="btn" onclick="document.location.reload(false)">
-					<i class="fa fa-sync"></i>
-				</button>
 			</div>
 		</form>
 	</div>
@@ -75,7 +72,7 @@
                       <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
                       <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
                       <td>${enchere.utilisateur.pseudo}</td>
-                      <td><button class="btn btn-primary"><span class="fa fa-file-alt"></span> <%=languages.getString("plusInformations")%></button></td>
+                      <td><a href="${pageContext.request.contextPath}/CyberJesus" class="btn btn-primary"><span class="fa fa-file-alt"></span> <%=languages.getString("plusInformations")%></a></td>
   					</tr>
   				</c:forEach>
   			</c:if>

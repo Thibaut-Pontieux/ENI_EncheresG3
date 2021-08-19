@@ -90,6 +90,113 @@
         <Comment>
             <Value>###PageConnexionInscription</Value>
         </Comment>
+        <Property>
+            <Name>seconnecter</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Connexion</Value>
+            <Value disabled="false">Connexion</Value>
+            <Value disabled="false">Log in</Value>
+        </Property>
+        <Property>
+            <Name>inscription</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Inscription</Value>
+            <Value disabled="false">Inscription</Value>
+            <Value disabled="false">Sign in</Value>
+        </Property>
+        <Property>
+            <Name>pseudo</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <DefaultValue></DefaultValue>
+            <Value disabled="false">Pseudo</Value>
+            <Value disabled="false">Pseudo</Value>
+            <Value disabled="false">Pseudo</Value>
+        </Property>
+        <Property>
+            <Name>mdp</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Mot de passe</Value>
+            <Value disabled="false">Mot de passe</Value>
+            <Value disabled="false">Password</Value>
+        </Property>
+        <Property>
+            <Name>nom</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Nom de famille</Value>
+            <Value disabled="false">Nom de famille</Value>
+            <Value disabled="false">Surname</Value>
+        </Property>
+        <Property>
+            <Name>prenom</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Prénom</Value>
+            <Value disabled="false">Prénom</Value>
+            <Value disabled="false">Name</Value>
+        </Property>
+        <Property>
+            <Name>email</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Email</Value>
+            <Value disabled="false">Email</Value>
+            <Value disabled="false">Email</Value>
+        </Property>
+        <Property>
+            <Name>telephone</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <DefaultValue></DefaultValue>
+            <Value disabled="false">Numéro de téléphone</Value>
+            <Value disabled="false">Numéro de téléphone</Value>
+            <Value disabled="false">Phone number</Value>
+        </Property>
+        <Property>
+            <Name>adresse</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Adresse</Value>
+            <Value disabled="false">Adresse</Value>
+            <Value disabled="false">Address</Value>
+        </Property>
+        <Property>
+            <Name>codePostal</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <DefaultValue></DefaultValue>
+            <Value disabled="false">Code Postal</Value>
+            <Value disabled="false">Code Postal</Value>
+            <Value disabled="false">Postal  code / ZIP code</Value>
+        </Property>
+        <Property>
+            <Name>ville</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Ville</Value>
+            <Value disabled="false">Ville</Value>
+            <Value disabled="false">City</Value>
+        </Property>
+        <Property>
+            <Name>validationConnexion</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Se connecter</Value>
+            <Value disabled="false">Se connecter</Value>
+            <Value disabled="false">Log in</Value>
+        </Property>
+        <Property>
+            <Name>validationInscription</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">S'inscrire</Value>
+            <Value disabled="false">S'inscrire</Value>
+            <Value disabled="false">Sign in</Value>
+        </Property>
         <Comment>
             <Value>###PageConnexionInscription</Value>
         </Comment>

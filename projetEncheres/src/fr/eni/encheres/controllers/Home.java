@@ -53,7 +53,6 @@ public class Home extends HttpServlet {
 			session.setAttribute("langue", "FRANCE");
 		}
 		
-		session.setAttribute("isConnected", false);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/home.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
