@@ -88,9 +88,7 @@
 		}
 		dateFinVente.min = new Date($(this).val()).toISOString().split("T")[0];
 	})
-	$("#heureDebVente").on("change", function() {
-		console.log($(this).val());
-		
+	$("#heureDebVente").on("change", function() {		
 		if($("#dateDebVente").val() == $("#dateFinVente").val()) {
 			heureFinVente.min = $(this).val();
 		}
