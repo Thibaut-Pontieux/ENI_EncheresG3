@@ -79,6 +79,17 @@
             <Value disabled="false">Rechercher</Value>
             <Value disabled="false">Search</Value>
         </Property>
+        <Property>
+            <Name>plusInformations</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Plus d'informations</Value>
+            <Value disabled="false">Plus d'informations</Value>
+            <Value disabled="false">More informations</Value>
+        </Property>
+        <Comment>
+            <Value>###PageConnexionInscription</Value>
+        </Comment>
         <Comment>
             <Value>###Tableau###</Value>
         </Comment>
@@ -204,6 +215,22 @@
             <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
             <Value disabled="false">Problème lors de la récupération des utilisateurs.</Value>
             <Value disabled="false">Error : cannot retrieve users.</Value>
+        </Property>
+        <Property>
+            <Name>enchere</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Enchère</Value>
+            <Value disabled="false">Enchère</Value>
+            <Value disabled="false">Auction</Value>
+        </Property>
+        <Property>
+            <Name>ajoutUtilisateurERR</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
+            <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
+            <Value disabled="false">Error : cannot add user</Value>
         </Property>
     </Records>
 </MultiProperties>

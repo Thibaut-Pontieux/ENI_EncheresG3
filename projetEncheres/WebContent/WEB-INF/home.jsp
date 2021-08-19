@@ -1,7 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@include file="/WEB-INF/layout/navbar.jspf"%>
+
+<head>
+	<meta charset="utf-8" />
+	<title><%=languages.getString("accueil")%></title>
+</head>
+
 <body>
-	<%@include file="/WEB-INF/layout/navbar.jspf"%>
+
 
 	<div class="text-center">
 		<h1><%=languages.getString("encheres")%></h1>
@@ -38,7 +45,7 @@
 					aria-label="Search" value="${requestScope.search}"> 
 					
 					<input type="submit" onclick="document.location.reload(false)"
-						name="chercher" class="btn btn-success btn-lg"
+						name="chercher" class="btn btn-primary btn-lg"
 						value="<%=languages.getString("chercher")%>">
 						
 				<button id="refresh" class="btn" onclick="document.location.reload(false)">
@@ -58,10 +65,10 @@
 					<tr>
 						<td></td>
 						<td>${enchere.nomArticle}</td>
-						<td>${enchere.montant}<img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
+						<td>${enchere.montant} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
 						<td>${enchere.dateEnchere}</td>
 						<td>${enchere.utilisateur.pseudo}</td>
-						<td></td>
+						<td><button class="btn btn-primary"><span class="far fa-file-alt"> <%=languages.getString("plusInformations")%></span></button></td>
 					</tr>
 				</c:forEach>
 			</c:if>

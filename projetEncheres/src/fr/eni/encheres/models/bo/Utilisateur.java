@@ -35,7 +35,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String code_postal, String ville, String mdp, int credit, boolean admin) {
+			String code_postal, String ville, String mdp) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -46,8 +46,6 @@ public class Utilisateur {
 		this.code_postal = code_postal;
 		this.ville = ville;
 		this.mdp = mdp;
-		this.credit = credit;
-		this.admin = admin;
 	}
 	
 	

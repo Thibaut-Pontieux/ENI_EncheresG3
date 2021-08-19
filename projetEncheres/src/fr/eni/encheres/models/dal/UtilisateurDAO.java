@@ -10,7 +10,7 @@ public interface UtilisateurDAO {
 
 	List<Utilisateur> getListeUtilisateurs() throws DALException;
 	Utilisateur getUtilisateur(int idUtilisateur) throws DALException;
-	boolean utilisateurExiste(String pseudo, String mdp) throws DALException;
+	int utilisateurExiste(String pseudo, String mdp) throws DALException,SQLException;
 	void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException;
 	void updateUtilisateur(Utilisateur utilisateur) throws DALException, SQLException;
 }

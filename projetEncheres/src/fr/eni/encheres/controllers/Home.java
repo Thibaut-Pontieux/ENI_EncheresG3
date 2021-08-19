@@ -1,4 +1,4 @@
-package fr.eni.encheres;
+package fr.eni.encheres.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,6 +76,7 @@ public class Home extends HttpServlet {
 			else
 				listeE = enchereMgr.getEncheres(categorieEnchere, search);
 			request.setAttribute("ListeEncheres", listeE);
+
 		} catch (BLLException e) {
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 		}
