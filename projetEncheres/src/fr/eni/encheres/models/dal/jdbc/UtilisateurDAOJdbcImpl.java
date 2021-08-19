@@ -18,6 +18,7 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,0,0)";
+	private static final String UPDATE_USER = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = 0, administrateur = 0 WHERE no_utilisateur = ? ";
 	
 	@Override
 	public List<Utilisateur> getListeUtilisateurs() throws DALException {
@@ -87,7 +88,29 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 
 	@Override
 	public void updateUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
-		// TODO Auto-generated method stub
+		Connection cnx = null;
+		
+		if (utilisateur != null) {
+			try {
+				cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE_USER);
+				pstmt.setInt(1,  utilisateur.getIdUtilisateur());
+				pstmt.setString(2,  utilisateur.getPseudo());
+				pstmt.setString(3,  utilisateur.getNom());
+				pstmt.setString(4,  utilisateur.getPrenom());
+				pstmt.setString(5,  utilisateur.getEmail());
+				pstmt.setString(6,  utilisateur.getTelephone());
+				pstmt.setString(7,  utilisateur.getRue());
+				pstmt.setString(8,  utilisateur.getCode_postal());
+				pstmt.setString(9,  utilisateur.getVille());
+				pstmt.setString(10, utilisateur.getMdp());
+				pstmt.executeUpdate();				
+			} catch (SQLException e) {
+				throw new DALException(languages.getString("ajoutUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+			}
+		} else {
+			throw new DALException(languages.getString("noData"));
+		} 
 		
 	}
 
