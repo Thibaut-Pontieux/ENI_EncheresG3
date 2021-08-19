@@ -1,6 +1,7 @@
 package fr.eni.encheres.models.bll;
 
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import fr.eni.encheres.models.bll.exceptions.BLLException;
@@ -8,11 +9,14 @@ import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.UtilisateurDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
 import fr.eni.encheres.models.dal.jdbc.UtilisateurDAOJdbcImpl;
+import fr.eni.languages.DefaultLanguage;
 
 public class UtilisateurManager {
 	
 	private UtilisateurDAO utilisateurDAO;
 
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
+	
 	public UtilisateurManager() {
 		utilisateurDAO = new UtilisateurDAOJdbcImpl();
 	}
@@ -32,6 +36,23 @@ public class UtilisateurManager {
 			throw exceptions;
 		}
 		return ID;
+	}
+	
+	public Utilisateur getUtilisateur(int idUtilisateur) throws BLLException {
+		BLLException exceptions = new BLLException();
+		Utilisateur utilisateur = new Utilisateur();
+		
+		try {
+			utilisateur = utilisateurDAO.getUtilisateur(idUtilisateur);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		
+		return utilisateur;
 	}
 	
 	public  void profilUtilisateur(int  idUser) throws BLLException, DALException {

@@ -65,7 +65,7 @@
     	</div> 
     	<div class="form-group mb-3 w-25 mx-auto">
     		<label class="control-label" for="adresseRetrait"><%= languages.getString("adresseRetrait") %></label>
-    		<input type="text" class="form-control" id="adresseRetrait" name="adresseRetrait" readonly>
+    		<input type="text" class="form-control" id="adresseRetrait" name="adresseRetrait" value="${requestScope.infosUtilisateur.getVille() }" readonly>
     	</div>
     	<div class="d-grid gap-2 w-25 mx-auto">
   			<button class="btn btn-success btn-lg" type="submit"><%= languages.getString("validerNvEnchere") %></button>

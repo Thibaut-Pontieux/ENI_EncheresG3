@@ -4,17 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import fr.eni.encheres.models.bo.Utilisateur;
 import fr.eni.encheres.models.dal.UtilisateurDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
+import fr.eni.languages.DefaultLanguage;
 
 public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO {
 
-	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
 	
 	private static final String SELECT_UN_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_VERIF_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE (pseudo = ? OR email = ?) AND mot_de_passe = ?";
@@ -28,12 +28,16 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 	}
 
 	@Override
-	public Utilisateur getUtilisateur(int idUtilisateur) throws DALException {
+	public Utilisateur getUtilisateur(int idUtilisateur) throws DALException, SQLException {
 		Utilisateur utilisateur = null;
+		Connection cnx = null;
+		
 		try {
-			Connection cnx = ConnectionProvider.getConnection();
-			Statement stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_UN_UTILISATEUR);
+			cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_UN_UTILISATEUR);
+			pstmt.setInt(1, idUtilisateur);
+			pstmt.executeQuery();
+			ResultSet rs = pstmt.getResultSet();
 			while(rs.next()) {
 				utilisateur = new Utilisateur();
 				utilisateur.setIdUtilisateur(rs.getInt("no_utilisateur"));
@@ -49,7 +53,9 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 				utilisateur.setCredit(rs.getInt("credit"));
 				utilisateur.setAdmin(rs.getBoolean("administrateur"));
 			}
+			cnx.close();
 		} catch (SQLException e) {
+			cnx.close();
 			throw new DALException(languages.getString("getUtilisateurERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
 		}
 		return utilisateur;
@@ -57,7 +63,6 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 
 	@Override
 	public int utilisateurExiste(String pseudo, String mdp) throws DALException, SQLException {
-		// TODO Auto-generated method stub
 		Connection cnx = null;
 		int ID = 0;
 		try {
@@ -71,8 +76,6 @@ public class UtilisateurDAOJdbcImpl extends Exception implements UtilisateurDAO 
 			while(rs.next()) {
 				ID = rs.getInt("no_utilisateur");
 			}
-			
-			
 			cnx.close();
 		} catch (SQLException e) {
 			cnx.close();

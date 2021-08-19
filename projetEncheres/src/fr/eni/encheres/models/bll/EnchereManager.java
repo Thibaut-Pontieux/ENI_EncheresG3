@@ -14,12 +14,13 @@ import fr.eni.encheres.models.bo.Enchere;
 import fr.eni.encheres.models.dal.EnchereDAO;
 import fr.eni.encheres.models.dal.exception.DALException;
 import fr.eni.encheres.models.dal.jdbc.EnchereDAOJdbcImpl;
+import fr.eni.languages.DefaultLanguage;
 
 public class EnchereManager {
 
 	private EnchereDAO enchereDAO;
 	
-	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language");
+	ResourceBundle languages = ResourceBundle.getBundle("fr.eni.languages.language", DefaultLanguage.defaultLng);
 	
 	public EnchereManager() {
 		enchereDAO = new EnchereDAOJdbcImpl();
@@ -27,7 +28,6 @@ public class EnchereManager {
 	
 	public List<Enchere> getEncheres() throws BLLException {
 		BLLException exceptions = new BLLException();
-		
 		List<Enchere> listeE = new ArrayList<Enchere>();
 		
 		try {
@@ -113,7 +113,7 @@ public class EnchereManager {
 		return listeC;
 	}
 	
-	public void ajouterArticle(int numCat, String nomArt, String descArt, int prixArt, String dateDebVente, String dateFinVente, String heureDebVente, String heureFinVente) throws BLLException {
+	public void ajouterArticle(int idUser, int numCat, String nomArt, String descArt, int prixArt, String dateDebVente, String dateFinVente, String heureDebVente, String heureFinVente) throws BLLException {
 		BLLException exceptions = new BLLException();
 		LocalDate dateDeb = null;
 		LocalDate dateFin = null;
@@ -160,7 +160,7 @@ public class EnchereManager {
 		if (exceptions.hasError()) throw exceptions;
 			
 		try {
-			Enchere enchere = new Enchere(1, numCat, nomArt, descArt, prixArt, dateDeb, dateFin);
+			Enchere enchere = new Enchere(idUser, numCat, nomArt, descArt, prixArt, dateDeb, dateFin);
 			enchereDAO.insertNouvelArticle(enchere);
 		} catch (DALException e) {
 			exceptions.ajoutErreur(e.getMessage());
