@@ -21,14 +21,17 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 	
 	private static final String SELECT_ENCHERES = "SELECT * FROM ARTICLES_VENDUS a "
 			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur";
-	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
-			+ "WHERE no_utilisateur = ?";
+	private static final String SELECT_MES_ENCHERES = "SELECT * FROM ARTICLES_VENDUS a "
+			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
+			+ "WHERE a.no_utilisateur = ?";
 	private static final String SELECT_ENCHERES_FILTRE = "SELECT * FROM ARTICLES_VENDUS a "
 			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 			+ "WHERE  c.libelle LIKE('%'+?+'%') AND  (a.nom_article LIKE('%'+?+'%') OR u.pseudo LIKE ('%'+?+'%'))" ;
+	private static final String SELECT_MES_ENCHERES_FILTRE = "SELECT * FROM ARTICLES_VENDUS a "
+			+ "INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur "
+			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
+			+ "WHERE a.no_utilisateur = ? AND c.libelle LIKE('%'+?+'%') AND  (a.nom_article LIKE('%'+?+'%') OR u.pseudo LIKE ('%'+?+'%'))" ;
 	private static final String SELECT_CATEGORIES = "SELECT * FROM CATEGORIES";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERE(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERE SET date_enchere = ?, montant_enchere = ? WHERE no_utilisateur = ? AND no_article = ? ";
@@ -78,14 +81,18 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 				cnx = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = cnx.prepareStatement(SELECT_MES_ENCHERES);
 				pstmt.setInt(1, idUser);
-				pstmt.executeUpdate();
+				pstmt.executeQuery();
 				ResultSet rs = pstmt.getResultSet();
 				while(rs.next()) {
 					enchere = new Enchere();
-					enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
 					enchere.setIdArticle(rs.getInt("no_article"));
-					enchere.setDate_enchere(rs.getDate("date_enchere"));
-					enchere.setMontant(rs.getInt("montant_enchere"));
+					enchere.setIdCategorie(rs.getInt("no_categorie"));
+					enchere.setNomArticle(rs.getString("nom_article"));
+					enchere.setDescription(rs.getString("description"));
+					enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
+					enchere.setDateFinEnchere(rs.getDate("date_fin_encheres"));
+					enchere.setPrixInitial(rs.getInt("prix_initial"));
+					enchere.setPrixFinal(rs.getInt("prix_vente"));
 					listeE.add(enchere);
 				}
 				cnx.close();
@@ -230,5 +237,43 @@ public class EnchereDAOJdbcImpl extends Exception implements EnchereDAO {
 		} else {
 			throw new DALException(languages.getString("noData"));
 		}
+	}
+
+	@Override
+	public List<Enchere> getEncheres(int idUser, String nomCat, String search) throws DALException, SQLException {
+		Connection cnx = null;
+		List<Enchere> listeE = new ArrayList<Enchere>();
+			try {
+				Enchere enchere = null;
+				cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(SELECT_MES_ENCHERES_FILTRE);
+				pstmt.setInt(1, idUser);
+				pstmt.setString(2, nomCat);
+				pstmt.setString(3, search);
+				pstmt.setString(4, search);
+				pstmt.executeQuery();
+				ResultSet rs = pstmt.getResultSet();
+				while(rs.next()) {
+					enchere = new Enchere();
+					enchere.setIdUtilisateur(rs.getInt("no_utilisateur"));
+					enchere.setIdArticle(rs.getInt("no_article"));
+					enchere.setIdCategorie(rs.getInt("no_categorie"));
+					enchere.setNomArticle(rs.getString("nom_article"));
+					enchere.setDescription(rs.getString("description"));
+					enchere.setDateDebutEnchere(rs.getDate("date_debut_encheres"));
+					enchere.setDateFinEnchere(rs.getDate("date_fin_encheres"));
+					enchere.setPrixInitial(rs.getInt("prix_initial"));
+					enchere.setPrixFinal(rs.getInt("prix_vente"));
+					Utilisateur u = new Utilisateur();
+					u.setPseudo(rs.getString("pseudo"));
+					enchere.setUtilisateur(u);
+					listeE.add(enchere);
+				}
+				cnx.close();
+			} catch (SQLException e) {
+				cnx.close();
+				throw new DALException(languages.getString("getEnchereERR") + " " + languages.getString("srvInfo") + " [" + e.getMessage() + "]");
+			}	
+		return listeE;
 	}
 }

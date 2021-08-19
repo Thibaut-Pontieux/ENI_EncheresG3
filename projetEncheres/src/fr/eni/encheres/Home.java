@@ -64,6 +64,7 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String categorieEnchere = request.getParameter("catEnchere");
 		String search			= request.getParameter("search");
 		List<Enchere> listeE = new ArrayList<Enchere>();
@@ -88,8 +89,6 @@ public class Home extends HttpServlet {
 		if (rd != null) {
 			rd.forward(request, response);
 		}
-		
-		
 	}
 
 }

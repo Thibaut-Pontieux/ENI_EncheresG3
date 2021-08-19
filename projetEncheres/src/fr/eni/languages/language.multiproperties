@@ -259,6 +259,14 @@
             <Value disabled="false">Mes enchères</Value>
             <Value disabled="false">My auctions</Value>
         </Property>
+        <Property>
+            <Name>detail</Name>
+            <Disabled>false</Disabled>
+            <MultiLine>false</MultiLine>
+            <Value disabled="false">Détails</Value>
+            <Value disabled="false">Détails</Value>
+            <Value disabled="false">More details</Value>
+        </Property>
         <Comment>
             <Value>###Erreur###</Value>
         </Comment>

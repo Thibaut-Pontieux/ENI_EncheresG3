@@ -59,6 +59,43 @@ public class EnchereManager {
 		return listeE;
 	}
 	
+	public List<Enchere> getEncheres(int idUtilisateur, String nomCategorie, String search) throws BLLException {
+		BLLException exceptions = new BLLException();
+		
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		
+		try {
+			listeE = enchereDAO.getEncheres(idUtilisateur, nomCategorie, search);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		return listeE;
+	}
+	
+	public List<Enchere> getMesEncheres(int idUtilisateur) throws BLLException {
+		BLLException exceptions = new BLLException();
+		
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		if(idUtilisateur == 0) {
+			exceptions.ajoutErreur("Erreur, utilisateur inconnu");
+			throw exceptions;
+		}
+		try {
+			listeE = enchereDAO.getUserEncheres(idUtilisateur);
+		} catch (DALException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		} catch (SQLException e) {
+			exceptions.ajoutErreur(e.getMessage());
+			throw exceptions;
+		}
+		return listeE;
+	}
+	
 	public List<Categorie> getCategories() throws BLLException {
 		BLLException exceptions = new BLLException();
 		

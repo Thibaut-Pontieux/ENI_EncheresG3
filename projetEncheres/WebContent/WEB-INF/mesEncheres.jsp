@@ -14,9 +14,6 @@
 	<div class="text-center">
 		<h1><%= languages.getString("mesEncheres") %></h1>		
 	</div>
-	<div class="container-fluid d-grid gap-2 w-25">
-		<a href="${pageContext.request.contextPath}/ajoutEncheres" class="btn btn-primary btn-block btn-lg" role="button"><%= languages.getString("ajouterE") %></a>
-	</div>
 	
 	<c:if test="${not empty requestScope.erreurs}">
 		<div>
@@ -27,7 +24,26 @@
 			</ul>
 		</div>
 	</c:if>
-	
+	<form action="${pageContext.request.contextPath }/mesEncheres" method="POST" class="mx-auto">
+			<div class="input-group w-50 mx-auto">
+  				<select class="form-select form-select-padding-x-lg" name="catEnchere">
+  					<c:if test="${not empty requestScope.categoriesEncheres}">
+  						<option value="Tout" selected><%= languages.getString("toutesCat") %></option>
+  						<c:forEach var="categorie" items="${requestScope.categoriesEncheres}">
+  							<c:if test="${categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}" selected>${categorie.getLibelle()}</option>
+  							</c:if>
+  							<c:if test="${! categorie.getLibelle().equals(requestScope.selectedEnchere)}">
+  								<option value="${categorie.getLibelle()}">${categorie.getLibelle()}</option>
+  							</c:if>
+  						</c:forEach>
+  					</c:if>
+  				</select>
+  				<input class="form-control mr-sm-2" name="search" type="search" placeholder="<%= languages.getString("rechercher") %>" aria-label="Search" value="${requestScope.search}">
+  				<input type="submit" onclick="document.location.reload(false)" name="chercher" class="btn btn-success btn-lg" value="<%= languages.getString("chercher") %>">
+  				<button id="refresh" class="btn" onclick="document.location.reload(false)"><i class="fa fa-sync"></i></button>
+			</div>
+		</form>
 	<table
   		id="table"
   		data-toolbar="#toolbar"
@@ -43,13 +59,15 @@
                       <td>${enchere.nomArticle}</td>
                       <td>${enchere.prixInitial} <img alt="points" src="resources/coin.png" width="15px" height="15px"></td>
                       <td><fmt:formatDate value="${enchere.dateDebutEnchere}" pattern="dd/MM/yyyy" /></td>
-                      <td></td>
+                      <td><a class="btn btn-primary" role="button"><%= languages.getString("detail") %></a></td>
   					</tr>
   				</c:forEach>
   			</c:if>
   		</tbody>
 	</table>
-	
+	<div class="w-25 mt-3">
+		<a href="${pageContext.request.contextPath}/ajoutEncheres" class="btn btn-primary" role="button"><%= languages.getString("ajouterE") %></a>
+	</div>
 	<script>
 		function detailFormatter(index, row) {
 			var html = []

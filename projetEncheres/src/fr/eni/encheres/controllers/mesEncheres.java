@@ -1,6 +1,8 @@
 package fr.eni.encheres.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.models.bll.EnchereManager;
+import fr.eni.encheres.models.bll.exceptions.BLLException;
+import fr.eni.encheres.models.bo.Categorie;
+import fr.eni.encheres.models.bo.Enchere;
+
 /**
  * Servlet implementation class mesEncheres
  */
@@ -16,18 +23,30 @@ import javax.servlet.http.HttpServletResponse;
 public class mesEncheres extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private EnchereManager enchereMgr;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public mesEncheres() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+        this.enchereMgr = new EnchereManager();    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		List<Enchere>   listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
+		try {
+			listeE = enchereMgr.getMesEncheres(1);
+			listeC = enchereMgr.getCategories();
+			request.setAttribute("ListeEncheres", listeE);
+			request.setAttribute("categoriesEncheres", listeC);
+		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mesEncheres.jsp");
 		if (rd != null) {
 			rd.forward(request, response);
@@ -38,8 +57,31 @@ public class mesEncheres extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String categorieEnchere = request.getParameter("catEnchere");
+		String search			= request.getParameter("search");
+		List<Enchere> listeE = new ArrayList<Enchere>();
+		List<Categorie> listeC = new ArrayList<Categorie>();
+		try {
+			// Création d'attributs contenant les catégories d'enchères et la catégorie sélectionnée par l'utilisateur
+			request.setAttribute("selectedEnchere", categorieEnchere);
+			listeC = enchereMgr.getCategories();
+			request.setAttribute("categoriesEncheres", listeC);
+			request.setAttribute("search", search);
+			// Si l'utilisateur filtre sur "Tout" alors on affiche toutes les enchères
+			if (categorieEnchere.equals("Tout"))
+				listeE = enchereMgr.getEncheres(1, "",search);
+			// Sinon on filtre suivant la catégorie sélectionnée
+			else
+				listeE = enchereMgr.getEncheres(1, categorieEnchere, search);
+			request.setAttribute("ListeEncheres", listeE);
+		} catch (BLLException e) {
+			request.setAttribute("erreurs", e.getListeMessagesErreur());
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mesEncheres.jsp");
+		if (rd != null) {
+			rd.forward(request, response);
+		}
 	}
 
 }
