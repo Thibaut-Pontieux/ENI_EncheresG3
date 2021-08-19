@@ -51,6 +51,7 @@ public class connexion extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String erreur  = "Le pseudo/email ou le mot de passe est incorrect";
 		try {
 			int ID = 0;
 			
@@ -62,20 +63,22 @@ public class connexion extends HttpServlet {
 			ID = utilisateurMgr.getUtilisateur(username, password);
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("idUser", ID);
+			
 			
 			
 			if (ID != 0 ) {
+				session.setAttribute("idUser", ID);
 				response.sendRedirect(request.getContextPath() + "/encheres");
 
 			}else {
-				response.sendRedirect(request.getContextPath() + "/connexion");
-
+				request.setAttribute("erreurUser", erreur);
+				response.sendRedirect(request.getContextPath() + "/connexion");				
 			}
 			
 			
 			
 		} catch (BLLException e) {
+			request.setAttribute("erreurUser", erreur);
 			request.setAttribute("erreurs", e.getListeMessagesErreur());
 			
 			response.sendRedirect(request.getContextPath() + "/connexion");
