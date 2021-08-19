@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/layout/navbar.jspf" %>
 <!DOCTYPE html>
 <html>
+<head>
+	<meta charset="UTF-8">
+	<title><%= languages.getString("ajouterE") %></title>
+</head>
 <body>
-	<%@include file="/WEB-INF/layout/navbar.jspf" %>
 	<div class="text-center">
 		<h1><%= languages.getString("ajouterE") %></h1>		
 	</div>
