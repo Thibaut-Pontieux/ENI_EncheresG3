@@ -41,6 +41,24 @@ public class UtilisateurManager {
 			 exceptions.ajoutErreur("Le format du code postal est incorrect");
 		 }
 		*/ 
+		 if(nom.length() > 30) exceptions.ajoutErreur("Longueur max du nom 30 caractères !");
+		 if(prenom.length() > 30) exceptions.ajoutErreur("Longueur max du prénom 30 caractères !");
+		 if(pseudo.length() > 30) exceptions.ajoutErreur("Longueur max du pseudo 30 caractères !");
+		 if(email.length() > 30) exceptions.ajoutErreur("Longueur max de l'email 50 caractères !");
+		 if(mdp.length() > 30) exceptions.ajoutErreur("Longueur max du mot de passe 30 caractères !");
+		 if(telephone.length() > 30) exceptions.ajoutErreur("Numéro de téléphone de 10 caractères max !");
+		 if(rue.length() > 30) exceptions.ajoutErreur("Longueur max du nom de la rue 30 caractères !");
+		 if(ville.length() > 30) exceptions.ajoutErreur("Longueur max du nom de la ville 30 caractères !");
+		 if(codePostal.length() > 5) exceptions.ajoutErreur("Longueur max du code postal 5 caractères !");
+		 if(nom.length() == 0 || nom.trim() == "") exceptions.ajoutErreur("Le nom est obligatoire !");
+		 if(nom.length() == 0 || nom.trim() == "") exceptions.ajoutErreur("Le nom est obligatoire !");
+		 if(prenom.length() == 0 || prenom.trim() == "") exceptions.ajoutErreur("Le prénom est obligatoire !");
+		 if(pseudo.length() == 0 || pseudo.trim() == "") exceptions.ajoutErreur("Le pseudo est obligatoire !");
+		 if(email.length() == 0 || email.trim() == "") exceptions.ajoutErreur("L'email est obligatoire !");
+		 if(mdp.length() == 0 || mdp.trim() == "") exceptions.ajoutErreur("Le mot de passe est obligatoire !");
+		 if(telephone.length() == 0 || telephone.trim() == "") exceptions.ajoutErreur("Le téléphone est obligatoire !");
+		 if(rue.length() == 0 || rue.trim() == "") exceptions.ajoutErreur("Le nom de la rue est obligatoire !");
+		 if(ville.length() == 0 || ville.trim() == "") exceptions.ajoutErreur("Le nom de la ville est obligatoire !");
 		 if (exceptions.hasError()) throw exceptions;
 		
 		try {

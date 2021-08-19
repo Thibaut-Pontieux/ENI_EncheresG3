@@ -80,6 +80,9 @@
             <Value disabled="false">Search</Value>
         </Property>
         <Comment>
+            <Value>###PageConnexionInscription</Value>
+        </Comment>
+        <Comment>
             <Value>###Tableau###</Value>
         </Comment>
         <Property>
@@ -214,48 +217,12 @@
             <Value disabled="false">Auction</Value>
         </Property>
         <Property>
-            <Name>connexion</Name>
-            <Disabled>false</Disabled>
-            <MultiLine>false</MultiLine>
-            <Value disabled="false">Connexion/Inscription</Value>
-            <Value disabled="false">Connexion/Inscription</Value>
-            <Value disabled="false">Login/Register</Value>
-        </Property>
-        <Property>
-            <Name>deconnexion</Name>
-            <Disabled>false</Disabled>
-            <MultiLine>false</MultiLine>
-            <Value disabled="false">Déconnexion</Value>
-            <Value disabled="false">Déconnexion</Value>
-            <Value disabled="false">Logout</Value>
-        </Property>
-        <Property>
-            <Name>test</Name>
-            <Disabled>false</Disabled>
-            <MultiLine>false</MultiLine>
-            <Value disabled="false">test</Value>
-            <Value disabled="false">test</Value>
-            <Value disabled="false">test</Value>
-        </Property>
-        <Property>
             <Name>ajoutUtilisateurERR</Name>
             <Disabled>false</Disabled>
             <MultiLine>false</MultiLine>
             <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
             <Value disabled="false">Problème lors de l'ajout d'un utilisateur</Value>
             <Value disabled="false">Error : cannot add user</Value>
-        </Property>
-        <Comment>
-            <Value>encheres</Value>
-        </Comment>
-        <Property>
-            <Name>yooooooo</Name>
-            <Disabled>false</Disabled>
-            <MultiLine>true</MultiLine>
-            <DefaultValue>ceci.EST.UN.test</DefaultValue>
-            <Value disabled="true"></Value>
-            <Value disabled="true"></Value>
-            <Value disabled="true"></Value>
         </Property>
     </Records>
 </MultiProperties>

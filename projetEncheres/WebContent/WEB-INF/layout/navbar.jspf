@@ -15,8 +15,6 @@
 	<!-- JS -->
 	<%@include file="/resources/js.jspf" %>
 	
-	
-	<title><%= languages.getString("accueil") %></title>
 </head>
 
 <header>
