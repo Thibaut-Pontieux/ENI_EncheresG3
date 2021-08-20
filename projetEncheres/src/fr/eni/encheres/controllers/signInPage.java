@@ -60,7 +60,10 @@ public class signInPage extends HttpServlet {
 			 request.setAttribute("erreurs", e.getListeMessagesErreur());
 		 }
 	       	        
-	    this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/connexion.jsp");
+		 if (rd != null) {
+			 rd.forward(request, response);
+		 }
 	}
 
 }

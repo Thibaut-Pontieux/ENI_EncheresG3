@@ -23,6 +23,15 @@
 			</ul>
 		</div>
 	</c:if>
+	<c:if test="${not empty requestScope.erreurs}">
+		<div>
+			<ul class="list-group">
+				<c:forEach var="erreur" items="${requestScope.erreurs}">
+					<li class="list-group-item d-flex list-group-item-danger">${erreur}</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 	<div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -70,7 +79,7 @@
 										<br>
 									</div>
 									<div class="form-group">
-										<input type="email" maxlength="50" class="form-control" name="email" id="email" placeholder="<%= languages.getString("email") %>" required/>
+										<input type="email" maxlength="20" class="form-control" name="email" id="email" placeholder="<%= languages.getString("email") %>" required/>
             							<c:if test="${!empty requestScope.error}"><p>Erreur</p></c:if>
 										<br>
 									</div>
